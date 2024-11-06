@@ -3,9 +3,16 @@ import { SafeAreaView, Image, StyleSheet } from "react-native";
 import SubmitButtonWelcome from "../components/submit-button-welcome";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function WelcomePage() {
+/*
+    Welcome Page
+    This page is the first page that the user sees when they open the app.
+    It contains a logo, a login button, and a register button.
+*/
+
+export default function WelcomePage({navigation}) {
 
   const imagePath = require("../assets/images/logo.jpg");
+  const gradientColors = ["#121EB9", "#FFFFFF"];
 
   // navigate to pages
   function navigateTo(page) {
@@ -16,29 +23,16 @@ export default function WelcomePage() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
+      <LinearGradient colors={gradientColors} style={styles.container}>
+        <Image source={imagePath} style={styles.logo} />
 
-      <LinearGradient
-        colors={["#121EB9", "#FFFFFF"]}
-        style={styles.container}
-      >
+        <SubmitButtonWelcome title="Login" onPress={navigateTo("login-page")} />
 
-      <Image
-        source={imagePath}
-        style={styles.logo}
-      />
-
-      <SubmitButtonWelcome
-          title="Login"
-          onPress={navigateTo("login-page")}
-      />
-
-      <SubmitButtonWelcome
+        <SubmitButtonWelcome
           title="Register"
-          onPress = {navigateTo("register-page")}
-      />
-
+          onPress={navigateTo("register-page")}
+        />
       </LinearGradient>
-
     </SafeAreaView>
   );
 }
@@ -58,5 +52,6 @@ const styles = StyleSheet.create({
     height: 100,
     alignSelf: "center",
     borderRadius: 10,
+    marginBottom: 10,
   },
 });

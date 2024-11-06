@@ -5,21 +5,18 @@ import React from "react";
   InputFieldWelcome
   This component is a text input field that is used in the welcome screen.
 
-  Props:
-    string placeholder (Required): The placeholder text for the input field.
-    string keyboardType (Required): The type of keyboard to display. (email-address -> 'email', password -> 'default')
-    bool isSecured (Optional): Whether the input should be obscured.
-      Default: false
-*/
+  Props you want to consider passing:
+    placeholder: The placeholder text for the input field.
+    keyboardType: The type of keyboard to display. (email-address -> 'email', password -> 'default')
+    onChangeText: The function to call when the text input changes.
+    */
 
-const InputFieldWelcome = ({placeholder, keyboardType, isSecured = false}) => {
+const InputFieldWelcome = (props) => {
     return (
       <TextInput
         style={styles.input}
-        placeholder={placeholder}
         placeholderTextColor="gray"
-        keyboardType={keyboardType}
-        secureTextEntry={isSecured}
+        {...props}
       />
     );
 };
