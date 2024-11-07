@@ -2,48 +2,46 @@ import { View, Text, StyleSheet } from "react-native";
 import { Checkbox } from "expo-checkbox";
 import React from "react";
 
-/*
-    TaskItem
-    This component is used as a format of a task item in the task list.
+// TaskItem component 
+// This is used as a format for displaying a task in a task list.
 
-    Props:
-        boolean isCompleted: The status of the task. 
-        string taskName: The name of the task.
-        string description: The description of the task.
-        string categoryColor: The color of the category of the task.
-        function onCheckBoxChange: Place setter function for the isCompleted state in the parent component.
-*/
+// Props:
+// - isCompleted: The completion status of the task (true for completed, false for not completed)
+// - taskName: The name of the task
+// - description: The description of the task
+// - categoryColor: The color representing the task's category. This color is used for the right border of the task item.
+// - onCheckBoxChange: A function that is called when the checkbox state changes. It receives the new state (true/false) as an argument.
 
-const TaskItem = ({ isCompleted, taskName, description, categoryColor, onCheckBoxChange}) => {
-
-  // Set the state of the checkbox
-  const handleCheckBox = () => {
-    onCheckBoxChange(!isCompleted);
-  };
-
-    return (
-      <View style={[styles.itemContainer, {borderRightColor: categoryColor}]}>
-        <Checkbox
-          style={styles.checkBox}
-          value={isCompleted}
-          onValueChange={handleCheckBox}
-        />
-        <View style={styles.textColumn}>
-          <Text style={styles.taskName}>{taskName}</Text>
-          <Text style={styles.taskDescription}>{description}</Text>
-        </View>
+const TaskItem = ({
+  isCompleted,
+  taskName,
+  description,
+  categoryColor,
+  onCheckBoxChange,
+}) => {
+  return (
+    <View style={[styles.itemContainer, { borderRightColor: categoryColor }]}>
+      <Checkbox
+        style={styles.checkBox}
+        value={isCompleted}
+        onValueChange={onCheckBoxChange}
+      />
+      <View style={styles.textColumn}>
+        <Text style={styles.taskName}>{taskName}</Text>
+        <Text style={styles.taskDescription}>{description}</Text>
       </View>
-    );
-}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: "row",
     alignItems: "center",
     marginVertical: 5,
-    paddingHorizontal: 10,
-
-    width: "98%",
+    marginHorizontal: "10%",
+    width: "90%",
+    maxWidth: 500,
     height: 50,
     borderRightWidth: 10,
   },
