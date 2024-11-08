@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView, Image, StyleSheet } from "react-native";
 import SubmitButtonWelcome from "../components/submit-button-welcome";
 import InputFieldWelcome from "../components/input-field-welcome";
@@ -13,6 +13,9 @@ import { LinearGradient } from "expo-linear-gradient";
 export default function WelcomePage({ navigation }) {
   const imagePath = require("../assets/images/logo.jpg");
   const gradientColors = ["#121EB9", "#FFFFFF"];
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // navigate to pages
   function navigateTo(page) {
@@ -29,11 +32,20 @@ export default function WelcomePage({ navigation }) {
     <SafeAreaView style={styles.safeArea}>
       <LinearGradient colors={gradientColors} style={styles.container}>
         <Image source={imagePath} style={styles.logo} />
-        <InputFieldWelcome placeholder="Username" keyboardType="default" />
-        <InputFieldWelcome placeholder="Password" keyboardType="default" />
-        <SubmitButtonWelcome title="Login" onPress={console.log("Button pressed")} />
-        <SubmitButtonWelcome title="Go Back" onPress={() => navigation.goBack()} />
-        </LinearGradient>
+        <InputFieldWelcome
+          placeholder="Username"
+          keyboardType="email-address"
+        />
+        <InputFieldWelcome placeholder="Password" keyboardType="default"/>
+        <SubmitButtonWelcome
+          title="Login"
+          onPress={() => console.log("Login button pressed.")}
+        />
+        <SubmitButtonWelcome
+          title="Go Back"
+          onPress={() => navigation.goBack()}
+        />
+      </LinearGradient>
     </SafeAreaView>
   );
 }
@@ -48,8 +60,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logo: {
-    width: 200,
-    height: 200,
-    marginBottom: 20,
+    width: 100,
+    height: 100,
+    alignSelf: "center",
+    borderRadius: 10,
+    marginBottom: 10,
   },
 });

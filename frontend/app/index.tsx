@@ -13,22 +13,24 @@ const Tab = createBottomTabNavigator();
 
 export default function RootLayout() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="welcome-page"
-        component={WelcomePage}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="login-page"
-        component={LoginPage}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="register-page"
-        component={RegisterPage}
-        options={{ headerShown: false }}
-      />
-    </Stack.Navigator>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="welcome-page"
+          component={WelcomePage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="login-page"
+          component={LoginPage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="register-page"
+          component={RegisterPage}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
