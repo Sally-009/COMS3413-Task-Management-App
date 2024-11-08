@@ -21,14 +21,12 @@ import React from "react";
  * />
  */
 
-const InputFieldWelcome = ({placeholder, keyboardType, isSecured = false}) => {
+const InputFieldWelcome = (props) => {
     return (
       <TextInput
         style={styles.input}
-        placeholder={placeholder}
         placeholderTextColor="gray"
-        keyboardType={keyboardType}
-        secureTextEntry={isSecured}
+        {...props}
       />
     );
 };

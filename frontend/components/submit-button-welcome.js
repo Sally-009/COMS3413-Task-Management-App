@@ -18,10 +18,7 @@ import React from "react";
  * />
  */
 
-const SubmitButtonWelcome = ({
-  title = "Submit",
-  onPress = () => console.log("Submit button pressed."),
-}) => {
+const SubmitButtonWelcome = ({ title = "Submit", onPress }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.buttonText}>{title}</Text>
