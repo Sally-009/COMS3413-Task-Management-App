@@ -1,15 +1,25 @@
 import { StyleSheet, TextInput } from "react-native";
 import React from "react";
 
-/*
-  InputFieldWelcome
-  This component is a text input field that is used in the welcome screen.
-
-  Props you want to consider passing:
-    placeholder: The placeholder text for the input field.
-    keyboardType: The type of keyboard to display. (email-address -> 'email', password -> 'default')
-    onChangeText: The function to call when the text input changes.
-    */
+/**
+ * InputFieldWelcome
+ * This component renders a text input field on the welcome screen.
+ * It is designed for collecting user input like email or password during the login/registration process.
+ * 
+ * @param {string} placeholder - The placeholder text for the input field. (Required)
+ * @param {string} keyboardType - The type of keyboard to display.
+ *    - "email-address" -> email keyboard
+ *    - "password" -> password keyboard (displays a default keyboard)
+ * @param {boolean} [isSecured=false] - Whether the input should be obscured (password field).
+ *    Default is `false`, meaning the input is not obscured.
+ *
+ * @example
+ * <InputFieldWelcome 
+ *   placeholder="Enter your email" 
+ *   keyboardType="email-address" 
+ *   isSecured={false} 
+ * />
+ */
 
 const InputFieldWelcome = (props) => {
     return (

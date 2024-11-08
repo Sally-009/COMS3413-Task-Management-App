@@ -1,6 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Text, View, StyleSheet, TextInput } from "react-native";
+import React, { useState } from "react";
+
 
 // Import pages
 import WelcomePage from "./welcome-page";
