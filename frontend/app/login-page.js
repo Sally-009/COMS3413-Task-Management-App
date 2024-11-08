@@ -1,66 +1,55 @@
-import React, { useState } from 'react';
-import { View, TextInput, Button, Image, StyleSheet } from 'react-native';
+import React from "react";
+import { SafeAreaView, Image, StyleSheet } from "react-native";
+import SubmitButtonWelcome from "../components/submit-button-welcome";
+import InputFieldWelcome from "../components/input-field-welcome";
+import { LinearGradient } from "expo-linear-gradient";
 
-const gradientColors = ["#121EB9", "#FFFFFF"];
+/*
+    Login Page
+    This page will allow the user to login to their account in the application
+    It contains a logo, two input fields, and a log in button
+*/
 
-export default function LoginPage({ navigation }) {
+export default function WelcomePage({ navigation }) {
   const imagePath = require("../assets/images/logo.jpg");
+  const gradientColors = ["#121EB9", "#FFFFFF"];
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  function handleLogin() {
-    console.log("Login button pressed");
-  }
-
-  function navigateToWelcome() {
-    if (navigation && typeof navigation.navigate === 'function') {
-      navigation.navigate('WelcomePage');
-    } else {
-      console.error("Navigation prop is not passed correctly.");
+  // navigate to pages
+  function navigateTo(page) {
+    return function() {
+      if (navigation && typeof navigation.navigate === 'function') {
+        navigation.navigate(page);
+      } else {
+        console.error("Navigation prop is not passed correctly.");
+      }
     }
   }
 
   return (
-    <View style={styles.container}>
-      <Image source={imagePath} style={styles.logo} />
-      <TextInput
-        style={styles.input}
-        placeholder="Username"
-        value={username}
-        onChangeText={setUsername}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-      <Button title="Log In" onPress={handleLogin} />
-      <Button title="Go Back" onPress={navigateToWelcome} />
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <LinearGradient colors={gradientColors} style={styles.container}>
+        <Image source={imagePath} style={styles.logo} />
+        <InputFieldWelcome placeholder="Username" keyboardType="default" />
+        <InputFieldWelcome placeholder="Password" keyboardType="default" />
+        <SubmitButtonWelcome title="Login" onPress={console.log("Button pressed")} />
+        <SubmitButtonWelcome title="Go Back" onPress={() => navigation.goBack()} />
+        </LinearGradient>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: gradientColors[1],
+    justifyContent: "center",
+    alignItems: "center",
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 200,
+    height: 200,
     marginBottom: 20,
-  },
-  input: {
-    width: '80%',
-    height: 40,
-    borderColor: '#121EB9',
-    borderWidth: 1,
-    marginBottom: 20,
-    paddingHorizontal: 10,
   },
 });

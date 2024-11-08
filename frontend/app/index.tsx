@@ -13,8 +13,7 @@ const Tab = createBottomTabNavigator();
 
 export default function RootLayout() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
+    <Stack.Navigator>
       <Stack.Screen
         name="welcome-page"
         component={WelcomePage}
@@ -30,7 +29,6 @@ export default function RootLayout() {
         component={RegisterPage}
         options={{ headerShown: false }}
       />
-      </Stack.Navigator>
-    </NavigationContainer>
+    </Stack.Navigator>
   );
 }
