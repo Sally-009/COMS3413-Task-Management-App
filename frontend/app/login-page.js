@@ -36,10 +36,10 @@ export default function WelcomePage({ navigation }) {
           placeholder="Username"
           keyboardType="email-address"
         />
-        <InputFieldWelcome placeholder="Password" keyboardType="default"/>
+        <InputFieldWelcome placeholder="Password" keyboardType="default" />
         <SubmitButtonWelcome
           title="Login"
-          onPress={() => console.log("Login button pressed.")}
+          onPress={navigateTo("tab-navigator")}
         />
         <SubmitButtonWelcome
           title="Go Back"
