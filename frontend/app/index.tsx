@@ -24,38 +24,54 @@ function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarStyle: {
-          height: 60,
-        },
-      }
-      }>
-      <Tab.Screen 
-      name="Home" 
-      component={HomePage} 
-      options={{ tabBarIcon: ({ color, size }) => (
+      headerStyle: {
+        backgroundColor: "#5157C7",
+      },
+      headerTintColor: "#fff",
+      tabBarStyle: {
+        height: 60,
+        backgroundColor: "#5157C7",
+      },
+      tabBarActiveTintColor: "#2CEB92",
+      tabBarInactiveTintColor: "#fff",
+      tabBarLabelPosition: "below-icon",
+      }}
+    >
+      <Tab.Screen
+      name="Home"
+      component={HomePage}
+      options={{
+        tabBarIcon: ({ color, size }) => (
         <Icon name="home" color={color} size={size} />
-      )}} 
+        ),
+      }}
       />
-      <Tab.Screen 
-      name="Tasks" 
-      component={TaskListPage} 
-      options={{ tabBarIcon: ({ color, size }) => (
+      <Tab.Screen
+      name="Tasks"
+      component={TaskListPage}
+      options={{
+        tabBarIcon: ({ color, size }) => (
         <Icon name="checklist" color={color} size={size} />
-      )}} 
+        ),
+      }}
       />
-      <Tab.Screen 
-      name="Social" 
-      component={SocialPage} 
-      options={{ tabBarIcon: ({ color, size }) => (
+      <Tab.Screen
+      name="Social"
+      component={SocialPage}
+      options={{
+        tabBarIcon: ({ color, size }) => (
         <Icon name="people" color={color} size={size} />
-      )}} 
+        ),
+      }}
       />
-      <Tab.Screen 
-      name="Setting" 
-      component={SettingPage} 
-      options={{ tabBarIcon: ({ color, size }) => (
+      <Tab.Screen
+      name="Setting"
+      component={SettingPage}
+      options={{
+        tabBarIcon: ({ color, size }) => (
         <Icon name="settings" color={color} size={size} />
-      )}} 
+        ),
+      }}
       />
     </Tab.Navigator>
   );
