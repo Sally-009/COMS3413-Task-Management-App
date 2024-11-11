@@ -2,6 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import { enableScreens } from "react-native-screens";
 import { Text, View, StyleSheet, TextInput } from "react-native";
 import React, { useState } from "react";
 
@@ -14,6 +15,9 @@ import HomePage from "./tab/home-page";
 import TaskListPage from "./tab/task-list-page";
 import SocialPage from "./tab/social-page";
 import SettingPage from "./tab/setting-page";
+
+// Enable screens - for mobile optimization
+enableScreens();
 
 // Create navigation stack
 const Stack = createNativeStackNavigator();
