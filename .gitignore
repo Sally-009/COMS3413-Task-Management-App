@@ -5,3 +5,5 @@ package-lock.json
 
 .vscode/
 **/debug.log
+
+android/.gradle/
