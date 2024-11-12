@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 /**
@@ -8,10 +8,10 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 
 export default function SettingItem({ name }) {
     return (
-      <View style={styles.container}>
+      <TouchableOpacity style={styles.container}>
         <Text style={styles.text}>{name}</Text>
         <Icon name="chevron-right" size={28} />
-      </View>
+      </TouchableOpacity>
     );
 }
 
