@@ -20,7 +20,7 @@ const TaskItem = ({
   onCheckBoxChange,
 }) => {
   return (
-    <View style={[styles.itemContainer, { borderRightColor: categoryColor }]}>
+    <View style={styles.itemContainer}>
       <Checkbox
         style={styles.checkBox}
         value={isCompleted}
@@ -30,6 +30,9 @@ const TaskItem = ({
         <Text style={styles.taskName}>{taskName}</Text>
         <Text style={styles.taskDescription}>{description}</Text>
       </View>
+      <View
+        style={[styles.categoryIndicator, { backgroundColor: categoryColor }]}
+      />
     </View>
   );
 };
@@ -38,12 +41,15 @@ const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: 5,
-    marginHorizontal: "10%",
-    width: "90%",
+    justifyContent: "space-around",
     maxWidth: 500,
     height: 50,
-    borderRightWidth: 10,
+    paddingHorizontal: 10,
+    marginVertical: 5,
+  },
+  categoryIndicator: {
+    width: 10,
+    height: "100%",
   },
   checkBox: {
     width: 20,
