@@ -7,4 +7,8 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: 20,
   },
+  center: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });

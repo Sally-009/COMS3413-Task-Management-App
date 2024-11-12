@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Divider } from "react-native-paper";
 
 /**
@@ -20,10 +20,11 @@ export default function Subtitle({ title }) {
         </View>
     )};
 
-const styles = {
+const styles = StyleSheet.create({
   item: {
     paddingHorizontal: 10,
     paddingVertical: 5,
+    marginVertical: 5,
   },
   text: {
     fontSize: 20,
@@ -31,4 +32,4 @@ const styles = {
     textAlign: "left",
     padding: 5,
   },
-};
+});
