@@ -2,15 +2,29 @@ import { View, Text, StyleSheet } from "react-native";
 import { Checkbox } from "expo-checkbox";
 import React from "react";
 
-// TaskItem component 
-// This is used as a format for displaying a task in a task list.
-
-// Props:
-// - isCompleted: The completion status of the task (true for completed, false for not completed)
-// - taskName: The name of the task
-// - date: The date of the task
-// - categoryColor: The color representing the task's category. This color is used for the right border of the task item.
-// - onCheckBoxChange: A function that is called when the checkbox state changes. It receives the new state (true/false) as an argument.
+/**
+ * TaskItem Component
+ * This component renders a row with a checkbox, text, and a category indicator.
+ * It is used in the task list screen for displaying task details.
+ * 
+ * Usage example:
+ * 
+ * <TaskItem
+ * isCompleted={false} // Task completion status
+ * taskName={"Task 1"} // Task name
+ * date={"10/2/2024"} // Task date
+ * categoryColor={"lightblue"} // Task category color
+ * onCheckBoxChange={handleCheckBoxChange} // Handler for checkbox change
+ * />
+ * 
+ * @param {Object} props - Component props
+ * @param {boolean} props.isCompleted - Task completion status
+ * @param {string} props.taskName - Task name
+ * @param {string} props.date - Task date
+ * @param {string} props.categoryColor - Task category color
+ * @param {function} props.onCheckBoxChange - Handler for checkbox change
+ * @returns {JSX.Element} TaskItem component
+ */
 
 const TaskItem = ({
   isCompleted,
@@ -28,7 +42,7 @@ const TaskItem = ({
       />
       <View style={styles.textColumn}>
         <Text style={styles.taskName}>{taskName}</Text>
-        <Text style={styles.taskDate}>Date: {date}</Text>
+        <Text style={styles.taskDate}>Date: {date ? date : "NA"}</Text>
       </View>
       <View
         style={[styles.categoryIndicator, { backgroundColor: categoryColor }]}
