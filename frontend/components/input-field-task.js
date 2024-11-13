@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     maxWidth: 500,
   },
   icon: {
-    color: "black",
     paddingHorizontal: 10,
   },
   input: {
