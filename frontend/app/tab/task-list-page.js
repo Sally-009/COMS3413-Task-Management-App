@@ -5,6 +5,7 @@ import { styles } from "../styles";
 // import components
 import Subtitle from "../../components/subtitle";
 import TaskItem from "../../components/task-item";
+import FabCreateTask from "../../components/fab-create-task";
 
 export default function TaskListPage() {
   return (
@@ -28,6 +29,9 @@ export default function TaskListPage() {
         categoryColor="lightcoral"
       />
       <TaskItem taskName="Task 6" date="November 13" categoryColor="orange" />
+
+      <FabCreateTask />
+
     </SafeAreaView>
   );
 }
