@@ -1,6 +1,7 @@
 import React from "react";
 import { FloatingAction } from "react-native-floating-action";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import { useNavigation } from "@react-navigation/native";
 
 // actions
 const actions = [
@@ -21,14 +22,25 @@ const actions = [
 ];
 
 const FabCreateTask = ({ onPress }) => {
-  return (
-    <FloatingAction
-      actions={actions}
-      onPressItem={onPress}
-      color="#49B583"
-      styles={styles.fabButton}
-    />
-  );
+
+    const navigation = useNavigation();
+
+    const handlePressItem = (name) => {
+    if (name === "createTask") {
+      navigation.navigate("CreateTaskPage"); // Replace 'CreateTaskPage' with the actual name of your task creation page
+    } else if (name === "editCategory") {
+      // Handle edit category action
+    }
+    };
+
+    return (
+      <FloatingAction
+        actions={actions}
+        onPressItem={handlePressItem}
+        color="#49B583"
+        styles={styles.fabButton}
+      />
+    );
 };
 
 const styles = {

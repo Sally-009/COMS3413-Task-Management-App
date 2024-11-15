@@ -56,8 +56,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     marginVertical: 5,
-    marginHorizontal: "10%",
-    width: "90%",
+    marginHorizontal: 20,
     maxWidth: 500,
   },
   icon: {
