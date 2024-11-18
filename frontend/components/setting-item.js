@@ -3,6 +3,9 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 
 /**
  * SettingItem component
+ * 
+ * TODO: Add onPress functionality
+ * 
  * @param {string} name - name of the setting
  */
 
