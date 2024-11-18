@@ -11,4 +11,14 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  socialInputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  friendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 });
