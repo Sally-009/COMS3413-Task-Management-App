@@ -33,7 +33,6 @@ export default function SocialPage() {
       </View>
       <EditFriendsButton onPress={toggleEditMode} />
       <Subtitle title="Friends List" />
-
       <FriendList friends={friends} deleteFriend={deleteFriend} isEditing={isEditing} />
     </SafeAreaView>
   );
