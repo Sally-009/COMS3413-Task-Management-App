@@ -8,6 +8,7 @@ import TaskItem from "../../components/task-item";
 import FabCreateTask from "../../components/fab-create-task";
 
 export default function TaskListPage() {
+
   return (
     <SafeAreaView style={styles.container}>
       <Subtitle title="No Date" />
