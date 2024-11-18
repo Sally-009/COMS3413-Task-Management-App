@@ -18,7 +18,9 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
   friendItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: 'row', // Arrange items in a row
+    justifyContent: 'space-between', // Space between items
+    alignItems: 'center', // Center items vertically
+    paddingRight: 10,
   },
 });

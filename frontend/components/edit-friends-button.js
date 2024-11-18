@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'flex-end', // Aligns the button to the right side
     marginHorizontal: 10,
-    marginVertical: -20,
+    marginVertical: -5,
     borderColor: "transparent",
     borderRadius: 13,
     borderWidth: 0,
