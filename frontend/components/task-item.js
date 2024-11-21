@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Checkbox } from "expo-checkbox";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 /**
  * TaskItem Component
@@ -32,8 +33,17 @@ const TaskItem = ({
   date,
   categoryColor,
   onCheckBoxChange,
-  onPressed
 }) => {
+
+  const navigation = useNavigation();
+
+  // Page navigation to task detail page
+  navigateToTaskDetail = () => {
+    navigation.navigate("Tasks", {
+    screen: "TaskDetailPage",
+    });  
+};
+
   return (
     <View style={styles.itemContainer}>
       <Checkbox
@@ -41,7 +51,10 @@ const TaskItem = ({
         value={isCompleted}
         onValueChange={onCheckBoxChange}
       />
-      <TouchableOpacity style={styles.textColumn} onPress={onPressed}>
+      <TouchableOpacity
+        style={styles.textColumn}
+        onPress={navigateToTaskDetail}
+      >
         <Text style={styles.taskName}>{taskName}</Text>
         <Text style={styles.taskDate}>Date: {date ? date : "NA"}</Text>
       </TouchableOpacity>

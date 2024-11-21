@@ -13,6 +13,7 @@ import TaskListPage from "./tab/task-list-page";
 import SocialPage from "./tab/social-page";
 import SettingPage from "./tab/setting-page";
 import CreateTaskPage from "./tab/sub-pages/create-task-page";
+import TaskDetailPage from "./tab/sub-pages/task-detail-page";
 
 // Create navigation stack
 const Stack = createNativeStackNavigator();
@@ -32,6 +33,11 @@ function TaskStackNavigator() {
         name="CreateTaskPage"
         component={CreateTaskPage}
         options={{ title: "Create New Task" }}
+      />
+      <TaskStack.Screen
+        name="TaskDetailPage"
+        component={TaskDetailPage}
+        options={{ title: "Task Detail" }}
       />
     </TaskStack.Navigator>
   );

@@ -12,7 +12,7 @@ export default function TaskListPage() {
   return (
     <SafeAreaView style={styles.container}>
       <Subtitle title="No Date" />
-      <TaskItem taskName="Task 1" categoryColor="lightblue" />
+      <TaskItem taskName="Task 1" categoryColor="lightblue"/>
       <TaskItem taskName="Task 2" categoryColor="orange" />
 
       <Subtitle title="Today" />
