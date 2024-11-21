@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Checkbox } from "expo-checkbox";
 import React from "react";
 
@@ -32,6 +32,7 @@ const TaskItem = ({
   date,
   categoryColor,
   onCheckBoxChange,
+  onPressed
 }) => {
   return (
     <View style={styles.itemContainer}>
@@ -40,10 +41,10 @@ const TaskItem = ({
         value={isCompleted}
         onValueChange={onCheckBoxChange}
       />
-      <View style={styles.textColumn}>
+      <TouchableOpacity style={styles.textColumn} onPress={onPressed}>
         <Text style={styles.taskName}>{taskName}</Text>
         <Text style={styles.taskDate}>Date: {date ? date : "NA"}</Text>
-      </View>
+      </TouchableOpacity>
       <View
         style={[styles.categoryIndicator, { backgroundColor: categoryColor }]}
       />
