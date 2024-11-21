@@ -19,6 +19,7 @@ import TaskDetailPage from "./tab/sub-pages/task-detail-page";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const TaskStack = createNativeStackNavigator();
+const HomeStack = createNativeStackNavigator();
 
 // Task stack to include TaskList and CreateTaskPage
 function TaskStackNavigator() {
@@ -43,6 +44,23 @@ function TaskStackNavigator() {
   );
 }
 
+function HomeStackNavigator() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="Home"
+        component={HomePage}
+        options={{ headerShown: false }}
+      />
+      <TaskStack.Screen
+        name="TaskDetailPage"
+        component={TaskDetailPage}
+        options={{ title: "Task Detail" }}
+      />
+    </HomeStack.Navigator>
+  );
+}
+
 // Tab Navigator
 function TabNavigator() {
   return (
@@ -63,7 +81,7 @@ function TabNavigator() {
     >
       <Tab.Screen
         name="Home"
-        component={HomePage}
+        component={HomeStackNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Icon name="home" color={color} size={size} />

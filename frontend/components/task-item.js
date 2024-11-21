@@ -39,9 +39,7 @@ const TaskItem = ({
 
   // Page navigation to task detail page
   navigateToTaskDetail = () => {
-    navigation.navigate("Tasks", {
-    screen: "TaskDetailPage",
-    });  
+    navigation.navigate("TaskDetailPage");  
 };
 
   return (
