@@ -13,7 +13,15 @@ import TaskListPage from "./tab/task-list-page";
 import SocialPage from "./tab/social-page";
 import SettingPage from "./tab/setting-page";
 import CreateTaskPage from "./tab/sub-pages/create-task-page";
-import TaskDetailPage from "./tab/sub-pages/task-detail-page"; // Import TaskDetailPage
+import TaskDetailPage from "./tab/sub-pages/task-detail-page";
+import DarkModePage from "./tab/sub-pages/dark-mode-page"; 
+import UsernamePage from "./tab/sub-pages/username-page";
+import EmailPage from "./tab/sub-pages/email-page";
+import PasswordPage from "./tab/sub-pages/password-page";  
+import DeleteAccountPage from "./tab/sub-pages/delete-account-page";   
+import NotificationPage from "./tab/sub-pages/notification-page";
+import ProfileImagePage from "./tab/sub-pages/profile-image-page"; 
+
 
 // Create navigation stack
 const Stack = createNativeStackNavigator();
@@ -55,6 +63,53 @@ function HomeStackNavigator() {
         name="TaskDetailPage"
         component={TaskDetailPage}
         options={{ title: "Task Details" }}
+      />
+    </TaskStack.Navigator>
+  );
+}
+
+function SettingStackNavigator() {
+  return (
+    <TaskStack.Navigator>
+      <TaskStack.Screen
+        name="SettingPage"
+        component={SettingPage}
+        options={{ title: "Home", headerShown: false }}
+      />
+      <TaskStack.Screen
+        name="UsernamePage"
+        component={UsernamePage}
+        options={{ title: "Username" }}
+      />
+      <TaskStack.Screen
+        name="PasswordPage"
+        component={PasswordPage}
+        options={{ title: "Change Password" }}
+      />
+      <TaskStack.Screen
+        name="ProfileImagePage"
+        component={ProfileImagePage}
+        options={{ title: "Profile Image" }}
+      />
+      <TaskStack.Screen
+        name="EmailPage"
+        component={EmailPage}
+        options={{ title: "Email" }}
+      />
+      <TaskStack.Screen
+        name="DeleteAccountPage"
+        component={DeleteAccountPage}
+        options={{ title: "Delete Account" }}
+      />
+      <TaskStack.Screen
+        name="NotificationPage"
+        component={NotificationPage}
+        options={{ title: "Notifications" }}
+      />
+      <TaskStack.Screen
+        name="DarkModePage"
+        component={DarkModePage}
+        options={{ title: "Dark Mode" }}
       />
     </TaskStack.Navigator>
   );
