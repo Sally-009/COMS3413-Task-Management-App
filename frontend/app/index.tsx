@@ -1,8 +1,8 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from "react-native-vector-icons/MaterialIcons";
-import React from "react";
 
 // Import pages
 import WelcomePage from "./welcome-page";
@@ -21,7 +21,7 @@ const Tab = createBottomTabNavigator();
 const TaskStack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
 
-// Task stack to include TaskList and CreateTaskPage
+// Task stack to include TaskList, CreateTaskPage, and TaskDetailPage
 function TaskStackNavigator() {
   return (
     <TaskStack.Navigator>
@@ -34,6 +34,23 @@ function TaskStackNavigator() {
         name="CreateTaskPage"
         component={CreateTaskPage}
         options={{ title: "Create New Task" }}
+      />
+      <TaskStack.Screen
+        name="TaskDetailPage"
+        component={TaskDetailPage}
+        options={{ title: "Task Details" }}
+      />
+    </TaskStack.Navigator>
+  );
+}
+
+function HomeStackNavigator() {
+  return (
+    <TaskStack.Navigator>
+      <TaskStack.Screen
+        name="HomePage"
+        component={HomePage}
+        options={{ title: "Home", headerShown: false }}
       />
       <TaskStack.Screen
         name="TaskDetailPage"

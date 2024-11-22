@@ -27,72 +27,60 @@ import { useNavigation } from "@react-navigation/native";
  * @returns {JSX.Element} TaskItem component
  */
 
-const TaskItem = ({
-  isCompleted,
-  taskName,
-  date,
-  categoryColor,
-  onCheckBoxChange,
-}) => {
-
+const TaskItem = ({ isCompleted, taskName, date, categoryColor, taskId }) => {
   const navigation = useNavigation();
 
-  // Page navigation to task detail page
-  navigateToTaskDetail = () => {
-    navigation.navigate("TaskDetailPage");  
-};
+  const handlePress = () => {
+    navigation.navigate('TaskDetailPage', { taskId }); // Ensure the screen name matches
+  };
 
   return (
-    <View style={styles.itemContainer}>
       <Checkbox
         style={styles.checkBox}
         value={isCompleted}
         onValueChange={onCheckBoxChange}
       />
-      <TouchableOpacity
-        style={styles.textColumn}
-        onPress={navigateToTaskDetail}
-      >
+    <TouchableOpacity onPress={handlePress} style={styles.container}>
+      <View style={styles.textContainer}>
         <Text style={styles.taskName}>{taskName}</Text>
-        <Text style={styles.taskDate}>Date: {date ? date : "NA"}</Text>
-      </TouchableOpacity>
-      <View
-        style={[styles.categoryIndicator, { backgroundColor: categoryColor }]}
-      />
-    </View>
+        {date && <Text style={styles.date}>{date}</Text>}
+      </View>
+      <View style={[styles.categoryIndicator, { backgroundColor: categoryColor }]} />
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  itemContainer: {
+  container: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around",
-    maxWidth: 500,
-    height: 50,
-    paddingHorizontal: 10,
+    padding: 10,
     marginVertical: 5,
+    marginHorizontal: 20,
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 2,
   },
   categoryIndicator: {
     width: 10,
-    height: "100%",
+    height: 10,
+    borderRadius: 5,
+    marginRight: 10,
   },
-  checkBox: {
-    width: 20,
-    height: 20,
-    margin: 10,
-  },
-  textColumn: {
+  textContainer: {
     flex: 1,
-    flexDirection: "column",
-    paddingHorizontal: 10,
   },
   taskName: {
     fontSize: 16,
+    fontWeight: "bold",
   },
-  taskDate: {
+  date: {
     fontSize: 14,
-    color: "gray",
+    color: "#888",
   },
 });
 
