@@ -1,14 +1,22 @@
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { View, Text, StyleSheet } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
-const TaskDetailItem = ({ iconName, text }) => {
-    return (
-        <View style={styles.rowContainer}>
-        <Icon name={iconName} size={24} color="#5f6368" style={styles.icon} />
-        <Text style={styles.text}>{text}</Text>
-        </View>
-    );
-    };
+const TaskDetailItem = ({ iconName, text, taskId }) => {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate('TaskDetails', { taskId });
+  };
+
+  return (
+    <TouchableOpacity onPress={handlePress} style={styles.rowContainer}>
+      <Icon name={iconName} size={24} color="#5f6368" style={styles.icon} />
+      <Text style={styles.text}>{text}</Text>
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   rowContainer: {
