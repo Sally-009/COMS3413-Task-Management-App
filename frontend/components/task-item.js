@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Checkbox } from "expo-checkbox";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 /**
  * TaskItem Component
@@ -27,7 +26,7 @@ import { useNavigation } from "@react-navigation/native";
  * @returns {JSX.Element} TaskItem component
  */
 
-const TaskItem = ({ isCompleted, taskName, date, categoryColor, taskId }) => {
+const TaskItem = ({ taskName, date, categoryColor, taskId }) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
@@ -35,17 +34,12 @@ const TaskItem = ({ isCompleted, taskName, date, categoryColor, taskId }) => {
   };
 
   return (
-      <Checkbox
-        style={styles.checkBox}
-        value={isCompleted}
-        onValueChange={onCheckBoxChange}
-      />
     <TouchableOpacity onPress={handlePress} style={styles.container}>
+      <View style={[styles.categoryIndicator, { backgroundColor: categoryColor }]} />
       <View style={styles.textContainer}>
         <Text style={styles.taskName}>{taskName}</Text>
         {date && <Text style={styles.date}>{date}</Text>}
       </View>
-      <View style={[styles.categoryIndicator, { backgroundColor: categoryColor }]} />
     </TouchableOpacity>
   );
 };

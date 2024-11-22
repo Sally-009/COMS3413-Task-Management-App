@@ -13,13 +13,12 @@ import TaskListPage from "./tab/task-list-page";
 import SocialPage from "./tab/social-page";
 import SettingPage from "./tab/setting-page";
 import CreateTaskPage from "./tab/sub-pages/create-task-page";
-import TaskDetailPage from "./tab/sub-pages/task-detail-page";
+import TaskDetailPage from "./tab/sub-pages/task-detail-page"; // Import TaskDetailPage
 
 // Create navigation stack
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const TaskStack = createNativeStackNavigator();
-const HomeStack = createNativeStackNavigator();
 
 // Task stack to include TaskList, CreateTaskPage, and TaskDetailPage
 function TaskStackNavigator() {
@@ -55,26 +54,9 @@ function HomeStackNavigator() {
       <TaskStack.Screen
         name="TaskDetailPage"
         component={TaskDetailPage}
-        options={{ title: "Task Detail" }}
+        options={{ title: "Task Details" }}
       />
     </TaskStack.Navigator>
-  );
-}
-
-function HomeStackNavigator() {
-  return (
-    <HomeStack.Navigator>
-      <HomeStack.Screen
-        name="Home"
-        component={HomePage}
-        options={{ headerShown: false }}
-      />
-      <TaskStack.Screen
-        name="TaskDetailPage"
-        component={TaskDetailPage}
-        options={{ title: "Task Detail" }}
-      />
-    </HomeStack.Navigator>
   );
 }
 

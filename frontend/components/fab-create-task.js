@@ -27,7 +27,7 @@ const FabCreateTask = ({ onPress }) => {
 
     const handlePressItem = (name) => {
     if (name === "createTask") {
-      navigation.navigate("CreateTaskPage")
+      navigation.navigate("CreateTaskPage"); // Replace 'CreateTaskPage' with the actual name of your task creation page
     } else if (name === "editCategory") {
       // Handle edit category action
     }
