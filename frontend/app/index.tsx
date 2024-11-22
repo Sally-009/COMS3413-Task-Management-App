@@ -1,8 +1,8 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from "react-native-vector-icons/MaterialIcons";
-import React from "react";
 
 // Import pages
 import WelcomePage from "./welcome-page";
@@ -13,13 +13,14 @@ import TaskListPage from "./tab/task-list-page";
 import SocialPage from "./tab/social-page";
 import SettingPage from "./tab/setting-page";
 import CreateTaskPage from "./tab/sub-pages/create-task-page";
+import TaskDetailPage from "./tab/sub-pages/task-detail-page"; // Import TaskDetailPage
 
 // Create navigation stack
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const TaskStack = createNativeStackNavigator();
 
-// Task stack to include TaskList and CreateTaskPage
+// Task stack to include TaskList, CreateTaskPage, and TaskDetailPage
 function TaskStackNavigator() {
   return (
     <TaskStack.Navigator>
@@ -32,6 +33,28 @@ function TaskStackNavigator() {
         name="CreateTaskPage"
         component={CreateTaskPage}
         options={{ title: "Create New Task" }}
+      />
+      <TaskStack.Screen
+        name="TaskDetailPage"
+        component={TaskDetailPage}
+        options={{ title: "Task Details" }}
+      />
+    </TaskStack.Navigator>
+  );
+}
+
+function HomeStackNavigator() {
+  return (
+    <TaskStack.Navigator>
+      <TaskStack.Screen
+        name="HomePage"
+        component={HomePage}
+        options={{ title: "Home", headerShown: false }}
+      />
+      <TaskStack.Screen
+        name="TaskDetailPage"
+        component={TaskDetailPage}
+        options={{ title: "Task Details" }}
       />
     </TaskStack.Navigator>
   );
@@ -57,7 +80,7 @@ function TabNavigator() {
     >
       <Tab.Screen
         name="Home"
-        component={HomePage}
+        component={HomeStackNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Icon name="home" color={color} size={size} />
