@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const ProfileImagePage = () => {
+const UsernameSettingPage = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Email Setting</Text>
+      <Text style={styles.text}>Username Setting</Text>
     </View>
   );
 };
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileImagePage;
+export default UsernameSettingPage;
