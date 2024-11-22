@@ -14,13 +14,13 @@ import SocialPage from "./tab/social-page";
 import SettingPage from "./tab/setting-page";
 import CreateTaskPage from "./tab/sub-pages/create-task-page";
 import TaskDetailPage from "./tab/sub-pages/task-detail-page";
-import DarkModePage from "./tab/sub-pages/dark-mode-page"; 
-import UsernamePage from "./tab/sub-pages/username-page";
-import EmailPage from "./tab/sub-pages/email-page";
-import PasswordPage from "./tab/sub-pages/password-page";  
-import DeleteAccountPage from "./tab/sub-pages/delete-account-page";   
-import NotificationPage from "./tab/sub-pages/notification-page";
-import ProfileImagePage from "./tab/sub-pages/profile-image-page"; 
+import DarkModePage from "./tab/sub-pages/dark-mode-setting"; 
+import UsernameSettingPage from "./tab/sub-pages/username-setting";
+import EmailSettingPage from "./tab/sub-pages/email-setting";
+import PasswordSettingPage from "./tab/sub-pages/password-setting";  
+import DeleteAccountPage from "./tab/sub-pages/delete-account-setting";   
+import NotificationSettingPage from "./tab/sub-pages/notification-setting";
+import ProfileImagePage from "./tab/sub-pages/profile-image-setting"; 
 
 
 // Create navigation stack
@@ -78,12 +78,12 @@ function SettingStackNavigator() {
       />
       <TaskStack.Screen
         name="UsernamePage"
-        component={UsernamePage}
+        component={UsernameSettingPage}
         options={{ title: "Username" }}
       />
       <TaskStack.Screen
         name="PasswordPage"
-        component={PasswordPage}
+        component={PasswordSettingPage}
         options={{ title: "Change Password" }}
       />
       <TaskStack.Screen
@@ -93,7 +93,7 @@ function SettingStackNavigator() {
       />
       <TaskStack.Screen
         name="EmailPage"
-        component={EmailPage}
+        component={EmailSettingPage}
         options={{ title: "Email" }}
       />
       <TaskStack.Screen
@@ -103,7 +103,7 @@ function SettingStackNavigator() {
       />
       <TaskStack.Screen
         name="NotificationPage"
-        component={NotificationPage}
+        component={NotificationSettingPage}
         options={{ title: "Notifications" }}
       />
       <TaskStack.Screen
@@ -162,7 +162,7 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Setting"
-        component={SettingPage}
+        component={SettingStackNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Icon name="settings" color={color} size={size} />
