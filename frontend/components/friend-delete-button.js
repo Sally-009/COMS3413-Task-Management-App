@@ -12,7 +12,7 @@ const FriendDeleteButton = ({ onPress }) => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: 'white',
-    padding: 5,
+    paddingRight: 30,
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',

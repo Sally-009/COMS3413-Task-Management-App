@@ -24,14 +24,17 @@ export default function SocialPage() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.socialInputContainer}>
+      <View style={localStyles.socialInputContainer}>
         <InputFieldSocial 
           placeholder="Username"
           keyboardType="default"
+          style={localStyles.inputField}
         />
-        <AddFriendButton />
+        <AddFriendButton style={localStyles.addButton}/>
       </View>
-      <EditFriendsButton onPress={toggleEditMode} />
+      <View style={localStyles.editButtonContainer}>
+        <EditFriendsButton onPress={toggleEditMode} />
+      </View>
       <Subtitle title="Friends List" />
       <FriendList friends={friends} deleteFriend={deleteFriend} isEditing={isEditing} />
     </SafeAreaView>
@@ -42,13 +45,47 @@ const FriendList = ({ friends, deleteFriend, isEditing }) => {
   return (
     <>
       {friends.map((friend, index) => (
-        <View key={index} style={styles.friendItem}>
+        <View key={index} style={localStyles.friendItem}>
           <FriendDetailItem username={friend} />
           {isEditing && (
-            <FriendDeleteButton onPress={() => deleteFriend(friend)} />
+            <FriendDeleteButton onPress={() => deleteFriend(friend)} style={localStyles.deleteButton} />
           )}
         </View>
       ))}
     </>
   );
 }
+
+export const localStyles = StyleSheet.create({
+  socialInputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingRight: 15,
+    paddingLeft: 15,
+  },
+  inputField: {
+    flex: 3,
+    borderColor: "black",
+    borderRadius: 0,
+    borderWidth: 2,
+    padding: 7,
+  },
+  addButton: {
+    flex:1,
+  },
+  editButtonContainer: {
+    position: 'absolute',
+    top: '9.8%', // Adjust as needed
+    right: '4.5%', // Adjust as needed
+    zIndex: 1, // Ensure it sits on top
+  },
+  friendItem: {
+    flexDirection: 'row', // Arrange items in a row
+    justifyContent: 'space-between', // Space between items
+    alignItems: 'center', // Center items vertically
+  },
+  deleteButton: {
+    paddingRight: 40, // Adjust this value to move the button further from the right side
+  },
+});
