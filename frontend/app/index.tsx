@@ -1,8 +1,9 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from "react-native-vector-icons/MaterialIcons";
+import { DarkModeProvider, useDarkMode } from '../components/settings-components/dark-mode-context';
 
 // Import pages
 import WelcomePage from "./welcome-page";
@@ -21,7 +22,6 @@ import PasswordSettingPage from "./tab/sub-pages/password-setting";
 import DeleteAccountPage from "./tab/sub-pages/delete-account-setting";   
 import NotificationSettingPage from "./tab/sub-pages/notification-setting";
 import ProfileImagePage from "./tab/sub-pages/profile-image-setting"; 
-
 
 // Create navigation stack
 const Stack = createNativeStackNavigator();
@@ -77,12 +77,12 @@ function SettingStackNavigator() {
         options={{ title: "Home", headerShown: false }}
       />
       <TaskStack.Screen
-        name="UsernameSettingPage"
+        name="UsernamePage"
         component={UsernameSettingPage}
         options={{ title: "Username" }}
       />
       <TaskStack.Screen
-        name="PasswordSettingPage"
+        name="PasswordPage"
         component={PasswordSettingPage}
         options={{ title: "Change Password" }}
       />
@@ -92,7 +92,7 @@ function SettingStackNavigator() {
         options={{ title: "Profile Image" }}
       />
       <TaskStack.Screen
-        name="EmailSettingPage"
+        name="EmailPage"
         component={EmailSettingPage}
         options={{ title: "Email" }}
       />
@@ -173,9 +173,11 @@ function TabNavigator() {
   );
 }
 
-export default function RootLayout() {
+function AppNavigator() {
+  const { isDarkMode } = useDarkMode();
+
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={isDarkMode ? DarkTheme : DefaultTheme}>
       <Stack.Navigator>
         <Stack.Screen
           name="welcome-page"
@@ -201,3 +203,11 @@ export default function RootLayout() {
     </NavigationContainer>
   );
 }
+
+const App = () => (
+  <DarkModeProvider>
+    <AppNavigator />
+  </DarkModeProvider>
+);
+
+export default App;
