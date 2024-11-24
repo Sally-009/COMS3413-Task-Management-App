@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import Subtitle from '../../../components/general-use-components/subtitle';
-import ProfileImage from '../../../components/settings-components/profile-image';
-import ChangeProfileImage from '../../../components/settings-components/change-profile-image';
+ import Subtitle from '../../../components/general-use-components/subtitle';
+ import ProfileImage from '../../../components/settings-components/profile-image';
+ import ChangeProfileImage from '../../../components/settings-components/change-profile-image';
 
 const ProfileImagePage = () => {
   const [profileImage, setProfileImage] = useState('https://via.placeholder.com/150');
