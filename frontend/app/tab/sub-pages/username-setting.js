@@ -28,4 +28,4 @@ const UsernameSettingPage = () => {
   );
 };
 
-export default UsernameSettingPage;
+ export default UsernameSettingPage;
