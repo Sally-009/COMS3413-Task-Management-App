@@ -3,6 +3,7 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from "react-native-vector-icons/MaterialIcons";
+import { DarkModeProvider, useDarkMode } from '../components/settings-components/dark-mode-context'; // Adjust the import path as needed
 
 // Import pages
 import WelcomePage from "./welcome-page";
@@ -172,10 +173,10 @@ function TabNavigator() {
   );
 }
 
-export default function RootLayout() {
-
+function RootLayout() {
+  const { isDarkMode } = useDarkMode();
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={isDarkMode ? DefaultTheme : DarkTheme}>
       <Stack.Navigator>
         <Stack.Screen
           name="welcome-page"
@@ -199,5 +200,13 @@ export default function RootLayout() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+  );
+}
+
+export default function App() {
+  return (
+    <DarkModeProvider>
+      <RootLayout />
+    </DarkModeProvider>
   );
 }

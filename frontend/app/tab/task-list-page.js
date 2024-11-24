@@ -6,11 +6,12 @@ import { styles } from "../styles";
 import Subtitle from "../../components/general-use-components/subtitle";
 import TaskItem from "../../components/tasks-components/task-item";
 import FabCreateTask from "../../components/general-use-components/fab-create-task";
+import withDarkMode from "../../components/settings-components/with-dark-mode"; // Import the HOC
 
-export default function TaskListPage() {
+function TaskListPage({ isDarkMode }) { // Receive isDarkMode as a prop
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, isDarkMode && styles.darkContainer]}>
       <Subtitle title="No Date" />
       <TaskItem taskName="Task 1" categoryColor="lightblue" taskId="1" />
       <TaskItem taskName="Task 2" categoryColor="orange" taskId="2" />
@@ -34,7 +35,8 @@ export default function TaskListPage() {
       <TaskItem taskName="Task 6" date="November 13" categoryColor="orange" taskId="6" />
 
       <FabCreateTask />
-
     </SafeAreaView>
   );
 }
+
+export default withDarkMode(TaskListPage);

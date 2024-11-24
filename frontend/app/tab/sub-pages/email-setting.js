@@ -3,9 +3,10 @@ import { SafeAreaView } from 'react-native';
 import UserInfo from '../../../components/settings-components/user-info';
 import InputFieldSetting from '../../../components/settings-components/input-field-setting';
 import Subtitle from '../../../components/general-use-components/subtitle';
+import withDarkMode from '../../../components/settings-components/with-dark-mode'; // Import the HOC
 import { styles } from '../../styles';
 
-const EmailSettingPage = () => {
+const EmailSettingPage = ({ isDarkMode }) => { // Receive isDarkMode as a prop
   const [email, setEmail] = useState('john.doe@example.com');
 
   const handleSaveEmail = (newEmail) => {
@@ -15,7 +16,7 @@ const EmailSettingPage = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, isDarkMode && styles.darkContainer]}>
       <Subtitle title="Current Email" />
       <UserInfo value={email} />
       <Subtitle title="New Email" />
@@ -27,4 +28,4 @@ const EmailSettingPage = () => {
   );
 };
 
-export default EmailSettingPage;
+export default withDarkMode(EmailSettingPage);

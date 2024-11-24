@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
- import Subtitle from '../../../components/general-use-components/subtitle';
- import ProfileImage from '../../../components/settings-components/profile-image';
- import ChangeProfileImage from '../../../components/settings-components/change-profile-image';
+import Subtitle from '../../../components/general-use-components/subtitle';
+import ProfileImage from '../../../components/settings-components/profile-image';
+import ChangeProfileImage from '../../../components/settings-components/change-profile-image';
+import withDarkMode from '../../../components/settings-components/with-dark-mode'; // Import the HOC
+import { styles } from '../../styles'; // Import global styles
 
-const ProfileImagePage = () => {
-  const [profileImage, setProfileImage] = useState('https://via.placeholder.com/150');
+const ProfileImagePage = ({ isDarkMode }) => { // Receive isDarkMode as a prop
+  const [profileImage, setProfileImage] = useState('https://example.com/profile.jpg');
 
   const handleImageChange = (newImageUri) => {
     setProfileImage(newImageUri);
@@ -14,7 +16,7 @@ const ProfileImagePage = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, isDarkMode && styles.darkContainer]}>
       <Subtitle title="Current Profile Image" />
       <ProfileImage uri={profileImage} />
       <ChangeProfileImage onImageChange={handleImageChange} />
@@ -22,14 +24,4 @@ const ProfileImagePage = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start', // Align items at the top
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-    paddingTop: 20, // Add some padding to the top
-  },
-});
-
-export default ProfileImagePage;
+export default withDarkMode(ProfileImagePage);

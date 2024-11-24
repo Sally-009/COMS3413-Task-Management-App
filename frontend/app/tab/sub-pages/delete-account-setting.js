@@ -3,8 +3,10 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Subtitle from '../../../components/general-use-components/subtitle';
 import DeleteAccountButton from '../../../components/settings-components/delete-account-button';
+import withDarkMode from '../../../components/settings-components/with-dark-mode'; // Import the HOC
+import { styles } from '../../styles'; // Import global styles
 
-const DeleteAccountPage = () => {
+function DeleteAccountPage({ isDarkMode }) { // Receive isDarkMode as a prop
   const navigation = useNavigation();
 
   const handleDeleteAccount = () => {
@@ -15,14 +17,14 @@ const DeleteAccountPage = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, isDarkMode && styles.darkContainer]}>
       <Subtitle title="Delete Account" />
       <DeleteAccountButton currentPassword="hardcodedpassword" onDeleteAccount={handleDeleteAccount} />
     </SafeAreaView>
   );
-};
+}
 
-const styles = StyleSheet.create({
+const localStyles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start', // Align items at the top
@@ -30,6 +32,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
     paddingTop: 20, // Add some padding to the top
   },
+  darkContainer: {
+    backgroundColor: '#333333',
+  },
 });
 
-export default DeleteAccountPage;
+export default withDarkMode(DeleteAccountPage);

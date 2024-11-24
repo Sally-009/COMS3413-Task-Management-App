@@ -1,4 +1,4 @@
-import { SafeAreaView, View } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { styles } from "../styles";
 
@@ -6,10 +6,11 @@ import { styles } from "../styles";
 import Subtitle from "../../components/general-use-components/subtitle";
 import SettingItem from "../../components/settings-components/setting-item";
 import LogoutButton from "../../components/settings-components/logout-button";
+import withDarkMode from "../../components/settings-components/with-dark-mode"; // Import the HOC
 
-export default function SettingPage() {
+function SettingPage() {
   return (
-    <SafeAreaView style={styles.container}>
+    <>
       <Subtitle title="Account Settings" />
       <SettingItem name="Username" navigationTarget="UsernameSettingPage" />
       <SettingItem name="Change password" navigationTarget="PasswordSettingPage" />
@@ -23,6 +24,8 @@ export default function SettingPage() {
       <View style={styles.center}>
         <LogoutButton />  
       </View>
-    </SafeAreaView>
+    </>
   );
 }
+
+export default withDarkMode(SettingPage);

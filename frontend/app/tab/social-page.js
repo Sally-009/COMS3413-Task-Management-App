@@ -1,16 +1,14 @@
-import { SafeAreaView, View, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
-import { styles } from '../styles';
-
-// Import components
-import Subtitle from '../../components/general-use-components/subtitle';
+import { SafeAreaView, View, StyleSheet } from 'react-native';
 import InputFieldSocial from '../../components/social-components/input-field-social';
-import AddFriendButton from '../../components/social-components/add-friend-button'; 
+import AddFriendButton from '../../components/social-components/add-friend-button';
 import FriendDetailItem from '../../components/social-components/friend-detail-item';
 import EditFriendsButton from '../../components/social-components/edit-friends-button';
-import FriendDeleteButton from '../../components/social-components/friend-delete-button';
+import Subtitle from '../../components/general-use-components/subtitle';
+import withDarkMode from '../../components/settings-components/with-dark-mode'; // Import the HOC
+import { styles } from '../styles'; // Import global styles
 
-export default function SocialPage() {
+function SocialPage({ isDarkMode }) { // Receive isDarkMode as a prop
   const [friends, setFriends] = useState(["Friend 1", "Friend 2"]);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -23,7 +21,7 @@ export default function SocialPage() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, isDarkMode && styles.darkContainer]}>
       <View style={localStyles.socialInputContainer}>
         <InputFieldSocial 
           placeholder="Username"
@@ -43,49 +41,35 @@ export default function SocialPage() {
 
 const FriendList = ({ friends, deleteFriend, isEditing }) => {
   return (
-    <>
-      {friends.map((friend, index) => (
-        <View key={index} style={localStyles.friendItem}>
-          <FriendDetailItem username={friend} />
-          {isEditing && (
-            <FriendDeleteButton onPress={() => deleteFriend(friend)} style={localStyles.deleteButton} />
-          )}
-        </View>
+    <View>
+      {friends.map(friend => (
+        <FriendDetailItem 
+          key={friend}
+          friend={friend}
+          isEditing={isEditing}
+          deleteFriend={deleteFriend}
+        />
       ))}
-    </>
+    </View>
   );
-}
+};
 
-export const localStyles = StyleSheet.create({
+const localStyles = StyleSheet.create({
   socialInputContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingRight: 15,
-    paddingLeft: 15,
+    margin: 10,
   },
   inputField: {
-    flex: 3,
-    borderColor: "black",
-    borderRadius: 0,
-    borderWidth: 2,
-    padding: 7,
+    flex: 1,
   },
   addButton: {
-    flex:1,
+    marginLeft: 10,
   },
   editButtonContainer: {
-    position: 'absolute',
-    top: '9.8%', // Adjust as needed
-    right: '4.5%', // Adjust as needed
-    zIndex: 1, // Ensure it sits on top
-  },
-  friendItem: {
-    flexDirection: 'row', // Arrange items in a row
-    justifyContent: 'space-between', // Space between items
-    alignItems: 'center', // Center items vertically
-  },
-  deleteButton: {
-    paddingRight: 40, // Adjust this value to move the button further from the right side
+    alignItems: 'flex-end',
+    margin: 10,
   },
 });
+
+export default withDarkMode(SocialPage);

@@ -2,7 +2,8 @@ import React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import Subtitle from "../../components/general-use-components/subtitle";
 import TaskItem from "../../components/tasks-components/task-item";
-
+import withDarkMode from "../../components/settings-components/with-dark-mode"; // Import the HOC
+import { styles } from "../styles";
 /**
  * HomePage component
  * 
@@ -13,9 +14,9 @@ import TaskItem from "../../components/tasks-components/task-item";
  * @returns {JSX.Element} HomePage component
  */
 
-export default function HomePage() {
+function HomePage() {
   return (
-    <SafeAreaView style={styles.container}>
+    <>
       <Subtitle title="Your Tasks" />
       <TaskItem
         taskName="Task 1"
@@ -35,13 +36,8 @@ export default function HomePage() {
         categoryColor={"lightcoral"}
         taskId="3" 
       />
-    </SafeAreaView>
+    </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-});
+export default withDarkMode(HomePage); // Wrap the component with the HOC

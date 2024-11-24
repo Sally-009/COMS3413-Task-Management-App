@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import UserInfo from '../../../components/settings-components/user-info';
 import InputFieldSetting from '../../../components/settings-components/input-field-setting';
 import Subtitle from '../../../components/general-use-components/subtitle';
+import withDarkMode from '../../../components/settings-components/with-dark-mode'; // Import the HOC
 import { styles } from '../../styles';
 
-const UsernameSettingPage = () => {
+const UsernameSettingPage = ({ isDarkMode }) => { // Receive isDarkMode as a prop
   const [username, setUsername] = useState('JohnDoe');
 
   const handleSaveUsername = (newUsername) => {
@@ -15,7 +16,7 @@ const UsernameSettingPage = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, isDarkMode && styles.darkContainer]}>
       <Subtitle title="Current Username" />
       <UserInfo label="Username" value={username} />
       <Subtitle title="New Username" />
@@ -28,4 +29,4 @@ const UsernameSettingPage = () => {
   );
 };
 
- export default UsernameSettingPage;
+export default withDarkMode(UsernameSettingPage);

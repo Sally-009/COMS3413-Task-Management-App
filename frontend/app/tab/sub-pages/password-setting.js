@@ -4,9 +4,10 @@ import UserInfo from '../../../components/settings-components/user-info';
 import InputFieldSetting from '../../../components/settings-components/input-field-setting';
 import Subtitle from '../../../components/general-use-components/subtitle';
 import ViewPasswordButton from '../../../components/settings-components/view-password';
+import withDarkMode from '../../../components/settings-components/with-dark-mode'; // Import the HOC
 import { styles } from '../../styles';
 
-const PasswordSettingPage = () => {
+const PasswordSettingPage = ({ isDarkMode }) => { // Receive isDarkMode as a prop
   const [password, setPassword] = useState('password');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -22,7 +23,7 @@ const PasswordSettingPage = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, isDarkMode && styles.darkContainer]}>
       <Subtitle title="Current Password" />
       <UserInfo value={isPasswordVisible ? password : '********'} />
       <ViewPasswordButton currentPassword="password" onPasswordVisible={handlePasswordVisible} />
@@ -35,4 +36,4 @@ const PasswordSettingPage = () => {
   );
 };
 
-export default PasswordSettingPage;
+export default withDarkMode(PasswordSettingPage);
