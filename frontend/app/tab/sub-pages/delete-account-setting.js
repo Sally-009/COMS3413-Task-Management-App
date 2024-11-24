@@ -1,8 +1,8 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Subtitle from '../../../components/subtitle';
-import DeleteAccountButton from '../../../components/delete-account-button';
+import Subtitle from '../../../components/general-use-components/subtitle';
+import DeleteAccountButton from '../../../components/settings-components/delete-account-button';
 
 const DeleteAccountPage = () => {
   const navigation = useNavigation();

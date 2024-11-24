@@ -3,9 +3,9 @@ import React from "react";
 import { styles } from "../styles";
 
 // import components
-import Subtitle from "../../components/subtitle";
-import SettingItem from "../../components/setting-item";
-import LogoutButton from "../../components/logout-button";
+import Subtitle from "../../components/general-use-components/subtitle";
+import SettingItem from "../../components/settings-components/setting-item";
+import LogoutButton from "../../components/settings-components/logout-button";
 
 export default function SettingPage() {
   return (

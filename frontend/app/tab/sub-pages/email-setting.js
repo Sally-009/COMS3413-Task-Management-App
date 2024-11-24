@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native';
-import UserInfo from '../../../components/user-info';
-import InputFieldSetting from '../../../components/input-field-setting';
-import Subtitle from '../../../components/subtitle';
+import UserInfo from '../../../components/settings-components/user-info';
+import InputFieldSetting from '../../../components/settings-components/input-field-setting';
+import Subtitle from '../../../components/general-use-components/subtitle';
 import { styles } from '../../styles';
 
 const EmailSettingPage = () => {

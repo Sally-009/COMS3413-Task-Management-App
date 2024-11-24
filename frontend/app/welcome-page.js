@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView, Image, StyleSheet } from "react-native";
-import SubmitButtonWelcome from "../components/submit-button-welcome";
+import SubmitButtonWelcome from "../components/welcome-components/submit-button-welcome";
 import { LinearGradient } from "expo-linear-gradient";
 
 /*

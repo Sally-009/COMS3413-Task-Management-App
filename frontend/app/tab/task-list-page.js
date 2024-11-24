@@ -3,9 +3,9 @@ import React from "react";
 import { styles } from "../styles";
 
 // import components
-import Subtitle from "../../components/subtitle";
-import TaskItem from "../../components/task-item";
-import FabCreateTask from "../../components/fab-create-task";
+import Subtitle from "../../components/general-use-components/subtitle";
+import TaskItem from "../../components/tasks-components/task-item";
+import FabCreateTask from "../../components/general-use-components/fab-create-task";
 
 export default function TaskListPage() {
 

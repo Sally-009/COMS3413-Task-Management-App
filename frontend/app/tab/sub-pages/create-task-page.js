@@ -5,9 +5,9 @@ import { styles } from "../../styles";
 // TODO: Adjust styles
 
 // import components
-import InputFieldTask from "../../../components/input-field-task";
-import ToggleItem from "../../../components/toggle-item";
-import MainButton from "../../../components/main-button";
+import InputFieldTask from "../../../components/tasks-components/input-field-task";
+import ToggleItem from "../../../components/tasks-components/toggle-item";
+import MainButton from "../../../components/general-use-components/main-button";
 
 export default function TaskDetailPage() {
     return (

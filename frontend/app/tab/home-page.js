@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
-import Subtitle from "../../components/subtitle";
-import TaskItem from "../../components/task-item";
+import Subtitle from "../../components/general-use-components/subtitle";
+import TaskItem from "../../components/tasks-components/task-item";
 
 /**
  * HomePage component

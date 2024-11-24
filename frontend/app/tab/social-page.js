@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { styles } from '../styles';
 
 // Import components
-import Subtitle from '../../components/subtitle';
-import InputFieldSocial from '../../components/input-field-social';
-import AddFriendButton from '../../components/add-friend-button'; 
-import FriendDetailItem from '../../components/friend-detail-item';
-import EditFriendsButton from '../../components/edit-friends-button';
-import FriendDeleteButton from '../../components/friend-delete-button';
+import Subtitle from '../../components/general-use-components/subtitle';
+import InputFieldSocial from '../../components/social-components/input-field-social';
+import AddFriendButton from '../../components/social-components/add-friend-button'; 
+import FriendDetailItem from '../../components/social-components/friend-detail-item';
+import EditFriendsButton from '../../components/social-components/edit-friends-button';
+import FriendDeleteButton from '../../components/social-components/friend-delete-button';
 
 export default function SocialPage() {
   const [friends, setFriends] = useState(["Friend 1", "Friend 2"]);
