@@ -8,7 +8,7 @@ require("dotenv").config();
 // Registration route
 router.post("/register", async (req, res) => {
   try {
-    const { username, password, firstname, lastname } = req.body;
+    const { username, email, password } = req.body;
 
     // Check if the user already exists
     const existingUser = await User.findOne({ username });
@@ -22,9 +22,8 @@ router.post("/register", async (req, res) => {
     // Create new user
     const newUser = new User({
       username,
+      email,
       password: hashedPassword,
-      firstname,
-      lastname,
     });
     await newUser.save();
 
