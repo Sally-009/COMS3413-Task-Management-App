@@ -3,7 +3,6 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { DarkModeProvider, useDarkMode } from '../components/settings-components/dark-mode-context';
 
 // Import pages
 import WelcomePage from "./welcome-page";
@@ -19,9 +18,9 @@ import DarkModePage from "./tab/sub-pages/dark-mode-setting";
 import UsernameSettingPage from "./tab/sub-pages/username-setting";
 import EmailSettingPage from "./tab/sub-pages/email-setting";
 import PasswordSettingPage from "./tab/sub-pages/password-setting";  
-import DeleteAccountPage from "./tab/sub-pages/delete-account-setting";   
+import DeleteAccountPage from "./tab/sub-pages/delete-account-setting";
 import NotificationSettingPage from "./tab/sub-pages/notification-setting";
-import ProfileImagePage from "./tab/sub-pages/profile-image-setting"; 
+import ProfileImagePage from "./tab/sub-pages/profile-image-setting"; // Ensure this is imported
 
 // Create navigation stack
 const Stack = createNativeStackNavigator();
@@ -173,11 +172,10 @@ function TabNavigator() {
   );
 }
 
-function AppNavigator() {
-  const { isDarkMode } = useDarkMode();
+export default function RootLayout() {
 
   return (
-    <NavigationContainer theme={isDarkMode ? DarkTheme : DefaultTheme}>
+    <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
           name="welcome-page"
@@ -203,11 +201,3 @@ function AppNavigator() {
     </NavigationContainer>
   );
 }
-
-const App = () => (
-  <DarkModeProvider>
-    <AppNavigator />
-  </DarkModeProvider>
-);
-
-export default App;
