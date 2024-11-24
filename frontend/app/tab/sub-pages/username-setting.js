@@ -1,25 +1,31 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import UserInfo from '../../../components/user-info';
+import InputFieldSetting from '../../../components/input-field-setting';
+import Subtitle from '../../../components/subtitle';
+import { styles } from '../../styles';
 
 const UsernameSettingPage = () => {
+  const [username, setUsername] = useState('JohnDoe');
+
+  const handleSaveUsername = (newUsername) => {
+    setUsername(newUsername);
+    // Handle the save action, e.g., update the state or make an API call
+    console.log('New Username:', newUsername);
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Username Setting</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Subtitle title="Current Username" />
+      <UserInfo label="Username" value={username} />
+      <Subtitle title="New Username" />
+      <InputFieldSetting
+        label="New Username"
+        placeholder="Enter new username"
+        onSave={handleSaveUsername}
+      />
+    </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-});
 
 export default UsernameSettingPage;

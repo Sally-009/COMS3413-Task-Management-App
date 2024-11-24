@@ -77,12 +77,12 @@ function SettingStackNavigator() {
         options={{ title: "Home", headerShown: false }}
       />
       <TaskStack.Screen
-        name="UsernamePage"
+        name="UsernameSettingPage"
         component={UsernameSettingPage}
         options={{ title: "Username" }}
       />
       <TaskStack.Screen
-        name="PasswordPage"
+        name="PasswordSettingPage"
         component={PasswordSettingPage}
         options={{ title: "Change Password" }}
       />
@@ -92,7 +92,7 @@ function SettingStackNavigator() {
         options={{ title: "Profile Image" }}
       />
       <TaskStack.Screen
-        name="EmailPage"
+        name="EmailSettingPage"
         component={EmailSettingPage}
         options={{ title: "Email" }}
       />

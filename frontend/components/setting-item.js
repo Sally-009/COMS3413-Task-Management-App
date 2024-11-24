@@ -1,21 +1,28 @@
+import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import { useNavigation } from '@react-navigation/native';
 
 /**
  * SettingItem component
  * 
- * TODO: Add onPress functionality
- * 
  * @param {string} name - name of the setting
+ * @param {string} navigationTarget - screen to navigate to
  */
 
-export default function SettingItem({ name }) {
-    return (
-      <TouchableOpacity style={styles.container}>
-        <Text style={styles.text}>{name}</Text>
-        <Icon name="chevron-right" size={28} />
-      </TouchableOpacity>
-    );
+export default function SettingItem({ name, navigationTarget }) {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate(navigationTarget);
+  };
+
+  return (
+    <TouchableOpacity style={styles.container} onPress={handlePress}>
+      <Text style={styles.text}>{name}</Text>
+      <Icon name="chevron-right" size={28} />
+    </TouchableOpacity>
+  );
 }
 
 const styles = StyleSheet.create({

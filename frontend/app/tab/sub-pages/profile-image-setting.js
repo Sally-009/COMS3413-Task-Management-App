@@ -1,25 +1,26 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import Subtitle from '../../../components/subtitle';
+import ProfileImage from '../../../components/profile-image';
+import ChangeProfileImage from '../../../components/change-profile-image';
+import { styles } from '../../styles';
 
 const ProfileImagePage = () => {
+  const [profileImage, setProfileImage] = useState('https://via.placeholder.com/150');
+
+  const handleImageChange = (newImageUri) => {
+    setProfileImage(newImageUri);
+    // Handle the save action, e.g., upload the image to the server
+    console.log('New Profile Image:', newImageUri);
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Email Setting</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Subtitle title="Current Profile Image" />
+      <ProfileImage uri={profileImage} />
+      <ChangeProfileImage onImageChange={handleImageChange} />
+    </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-});
 
 export default ProfileImagePage;
