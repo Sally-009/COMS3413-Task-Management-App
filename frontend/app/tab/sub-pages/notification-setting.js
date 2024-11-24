@@ -1,9 +1,9 @@
 import React from "react";
 import { SafeAreaView, View, Text, Button } from "react-native";
-import { styles } from "../styles";
+import { styles } from "../../styles";
 
 // import components
-import Subtitle from "../../components/subtitle";
+import Subtitle from "../../../components/subtitle";
 
 export default function SettingPage() {
   return (

@@ -16,9 +16,9 @@ import CreateTaskPage from "./tab/sub-pages/create-task-page";
 import TaskDetailPage from "./tab/sub-pages/task-detail-page";
 import DarkModePage from "./tab/sub-pages/dark-mode-setting"; 
 import UsernameSettingPage from "./tab/sub-pages/username-setting";
-import EmailSettingPage from "./tab/sub-pages/email-setting";
+// import EmailSettingPage from "./tab/sub-pages/email-setting";
 import PasswordSettingPage from "./tab/sub-pages/password-setting";  
-import DeleteAccountPage from "./tab/sub-pages/delete-account-setting";   
+// import DeleteAccountPage from "./tab/sub-pages/delete-account-setting";   
 import NotificationSettingPage from "./tab/sub-pages/notification-setting";
 import ProfileImagePage from "./tab/sub-pages/profile-image-setting"; 
 
@@ -91,7 +91,7 @@ function SettingStackNavigator() {
         component={ProfileImagePage}
         options={{ title: "Profile Image" }}
       />
-      <TaskStack.Screen
+      {/* <TaskStack.Screen
         name="EmailPage"
         component={EmailSettingPage}
         options={{ title: "Email" }}
@@ -100,7 +100,7 @@ function SettingStackNavigator() {
         name="DeleteAccountPage"
         component={DeleteAccountPage}
         options={{ title: "Delete Account" }}
-      />
+      /> */}
       <TaskStack.Screen
         name="NotificationPage"
         component={NotificationSettingPage}

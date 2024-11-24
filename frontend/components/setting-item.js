@@ -7,11 +7,12 @@ import Icon from "react-native-vector-icons/MaterialIcons";
  * TODO: Add onPress functionality
  * 
  * @param {string} name - name of the setting
+ * @param {function} onPress - function to call when the setting is pressed
  */
 
-export default function SettingItem({ name }) {
+export default function SettingItem({ name, onPress }) {
     return (
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={onPress}>
         <Text style={styles.text}>{name}</Text>
         <Icon name="chevron-right" size={28} />
       </TouchableOpacity>
