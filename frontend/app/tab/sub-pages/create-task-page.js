@@ -5,8 +5,11 @@ import ToggleItem from "../../../components/tasks-components/toggle-item";
 import MainButton from "../../../components/general-use-components/main-button";
 import withDarkMode from "../../../components/settings-components/with-dark-mode"; // Import the HOC
 import { styles } from "../../styles"; // Import global styles
+import { DarkModeProvider, useDarkMode } from '../../../components/settings-components/dark-mode-context';
 
-function CreateTaskPage({ isDarkMode }) { // Receive isDarkMode as a prop
+
+function CreateTaskPage() { // Receive isDarkMode as a prop
+  const { isDarkMode } = useDarkMode();
   return (
     <SafeAreaView style={[styles.container, isDarkMode && styles.darkContainer]}>
       <InputFieldTask iconName="edit" placeholder="Task Name" />
@@ -28,4 +31,11 @@ function CreateTaskPage({ isDarkMode }) { // Receive isDarkMode as a prop
   );
 }
 
-export default withDarkMode(CreateTaskPage);
+
+const App = () => (
+  <DarkModeProvider>
+    <CreateTaskPage />
+  </DarkModeProvider>
+);
+
+export default App;

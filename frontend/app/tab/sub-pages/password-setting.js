@@ -6,10 +6,13 @@ import Subtitle from '../../../components/general-use-components/subtitle';
 import ViewPasswordButton from '../../../components/settings-components/view-password';
 import withDarkMode from '../../../components/settings-components/with-dark-mode'; // Import the HOC
 import { styles } from '../../styles';
+import { DarkModeProvider, useDarkMode } from '../../../components/settings-components/dark-mode-context';
 
-const PasswordSettingPage = ({ isDarkMode }) => { // Receive isDarkMode as a prop
+
+const PasswordSettingPage = () => { // Receive isDarkMode as a prop
   const [password, setPassword] = useState('password');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const { isDarkMode } = useDarkMode();
 
   const handleSavePassword = (newPassword) => {
     setPassword(newPassword);
@@ -36,4 +39,10 @@ const PasswordSettingPage = ({ isDarkMode }) => { // Receive isDarkMode as a pro
   );
 };
 
-export default withDarkMode(PasswordSettingPage);
+const App = () => (
+  <DarkModeProvider>
+    <PasswordSettingPage />
+  </DarkModeProvider>
+);
+
+export default App;

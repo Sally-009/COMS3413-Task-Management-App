@@ -1,9 +1,10 @@
 import React from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import Subtitle from "../../components/general-use-components/subtitle";
 import TaskItem from "../../components/tasks-components/task-item";
-import withDarkMode from "../../components/settings-components/with-dark-mode"; // Import the HOC
 import { styles } from "../styles";
+import { DarkModeProvider, useDarkMode } from '../../components/settings-components/dark-mode-context';
+
 /**
  * HomePage component
  * 
@@ -15,29 +16,21 @@ import { styles } from "../styles";
  */
 
 function HomePage() {
+  const { isDarkMode } = useDarkMode();
   return (
-    <>
+    <View style={[styles.container, isDarkMode && styles.darkContainer]}>
       <Subtitle title="Your Tasks" />
-      <TaskItem
-        taskName="Task 1"
-        date={"10/2/2024"}
-        categoryColor={"lightblue"}
-        taskId="1" 
-      />
-      <TaskItem
-        taskName="Task 2"
-        date={"10/2/2024"}
-        categoryColor={"lightgreen"}
-        taskId="2" 
-      />
-      <TaskItem
-        taskName="Task 3"
-        date={"10/5/2024"}
-        categoryColor={"lightcoral"}
-        taskId="3" 
-      />
-    </>
+      <TaskItem taskName="Task 1" date={"10/2/2024"} categoryColor={"lightblue"} taskId="1" />
+      <TaskItem taskName="Task 2" date={"10/2/2024"} categoryColor={"lightgreen"} taskId="2" />
+      <TaskItem taskName="Task 3" date={"10/5/2024"} categoryColor={"lightcoral"} taskId="3" />
+    </View>
   );
 }
 
-export default withDarkMode(HomePage); // Wrap the component with the HOC
+const App = () => (
+  <DarkModeProvider>
+    <HomePage />
+  </DarkModeProvider>
+);
+
+export default App;

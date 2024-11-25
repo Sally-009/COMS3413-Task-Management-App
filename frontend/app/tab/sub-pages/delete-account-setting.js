@@ -5,9 +5,11 @@ import Subtitle from '../../../components/general-use-components/subtitle';
 import DeleteAccountButton from '../../../components/settings-components/delete-account-button';
 import withDarkMode from '../../../components/settings-components/with-dark-mode'; // Import the HOC
 import { styles } from '../../styles'; // Import global styles
+import { DarkModeProvider, useDarkMode } from '../../../components/settings-components/dark-mode-context'; // Import the DarkModeProvider and useDarkMode hook
 
-function DeleteAccountPage({ isDarkMode }) { // Receive isDarkMode as a prop
+function DeleteAccountPage() { // Receive isDarkMode as a prop
   const navigation = useNavigation();
+  const isDarkMode = useDarkMode(); // Use the isDarkMode hook
 
   const handleDeleteAccount = () => {
     // Handle the delete action, e.g., make an API call to delete the account
@@ -36,5 +38,10 @@ const localStyles = StyleSheet.create({
     backgroundColor: '#333333',
   },
 });
+const App = () => (
+  <DarkModeProvider>
+    <DeleteAccountPage />
+  </DarkModeProvider>
+);
 
-export default withDarkMode(DeleteAccountPage);
+export default App;

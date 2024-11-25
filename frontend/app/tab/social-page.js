@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
 import { SafeAreaView, View, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { styles } from '../styles';
+import Subtitle from '../../components/general-use-components/subtitle';
 import InputFieldSocial from '../../components/social-components/input-field-social';
 import AddFriendButton from '../../components/social-components/add-friend-button';
 import FriendDetailItem from '../../components/social-components/friend-detail-item';
 import EditFriendsButton from '../../components/social-components/edit-friends-button';
-import Subtitle from '../../components/general-use-components/subtitle';
-import withDarkMode from '../../components/settings-components/with-dark-mode'; // Import the HOC
-import { styles } from '../styles'; // Import global styles
+import FriendDeleteButton from '../../components/social-components/friend-delete-button';
+import { DarkModeProvider, useDarkMode } from '../../components/settings-components/dark-mode-context';
 
-function SocialPage({ isDarkMode }) { // Receive isDarkMode as a prop
+function SocialPage() {
+  const { isDarkMode } = useDarkMode();
   const [friends, setFriends] = useState(["Friend 1", "Friend 2"]);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -23,12 +25,8 @@ function SocialPage({ isDarkMode }) { // Receive isDarkMode as a prop
   return (
     <SafeAreaView style={[styles.container, isDarkMode && styles.darkContainer]}>
       <View style={localStyles.socialInputContainer}>
-        <InputFieldSocial 
-          placeholder="Username"
-          keyboardType="default"
-          style={localStyles.inputField}
-        />
-        <AddFriendButton style={localStyles.addButton}/>
+        <InputFieldSocial placeholder="Username" keyboardType="default" style={localStyles.inputField} />
+        <AddFriendButton style={localStyles.addButton} />
       </View>
       <View style={localStyles.editButtonContainer}>
         <EditFriendsButton onPress={toggleEditMode} />
@@ -41,35 +39,59 @@ function SocialPage({ isDarkMode }) { // Receive isDarkMode as a prop
 
 const FriendList = ({ friends, deleteFriend, isEditing }) => {
   return (
-    <View>
-      {friends.map(friend => (
-        <FriendDetailItem 
-          key={friend}
-          friend={friend}
-          isEditing={isEditing}
-          deleteFriend={deleteFriend}
-        />
+    <>
+      {friends.map((friend, index) => (
+        <View key={index} style={localStyles.friendItem}>
+          <FriendDetailItem username={friend} />
+          {isEditing && (
+            <FriendDeleteButton onPress={() => deleteFriend(friend)} style={localStyles.deleteButton} />
+          )}
+        </View>
       ))}
-    </View>
+    </>
   );
-};
+}
 
-const localStyles = StyleSheet.create({
+
+
+export const localStyles = StyleSheet.create({
   socialInputContainer: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    margin: 10,
+    paddingRight: 15,
+    paddingLeft: 15,
   },
   inputField: {
-    flex: 1,
+    flex: 3,
+    borderColor: "black",
+    borderRadius: 0,
+    borderWidth: 2,
+    padding: 7,
   },
   addButton: {
-    marginLeft: 10,
+    flex:1,
   },
   editButtonContainer: {
-    alignItems: 'flex-end',
-    margin: 10,
+    position: 'absolute',
+    top: '9.8%', // Adjust as needed
+    right: '4.5%', // Adjust as needed
+    zIndex: 1, // Ensure it sits on top
+  },
+  friendItem: {
+    flexDirection: 'row', // Arrange items in a row
+    justifyContent: 'space-between', // Space between items
+    alignItems: 'center', // Center items vertically
+  },
+  deleteButton: {
+    paddingRight: 40, // Adjust this value to move the button further from the right side
   },
 });
 
-export default withDarkMode(SocialPage);
+const App = () => (
+  <DarkModeProvider>
+    <SocialPage />
+  </DarkModeProvider>
+);
+
+export default App;

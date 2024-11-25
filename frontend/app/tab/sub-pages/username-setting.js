@@ -5,9 +5,12 @@ import InputFieldSetting from '../../../components/settings-components/input-fie
 import Subtitle from '../../../components/general-use-components/subtitle';
 import withDarkMode from '../../../components/settings-components/with-dark-mode'; // Import the HOC
 import { styles } from '../../styles';
+import { DarkModeProvider, useDarkMode } from '../../../components/settings-components/dark-mode-context';
 
-const UsernameSettingPage = ({ isDarkMode }) => { // Receive isDarkMode as a prop
+
+const UsernameSettingPage = () => { // Receive isDarkMode as a prop
   const [username, setUsername] = useState('JohnDoe');
+  const { isDarkMode } = useDarkMode();
 
   const handleSaveUsername = (newUsername) => {
     setUsername(newUsername);
@@ -29,4 +32,10 @@ const UsernameSettingPage = ({ isDarkMode }) => { // Receive isDarkMode as a pro
   );
 };
 
-export default withDarkMode(UsernameSettingPage);
+const App = () => (
+  <DarkModeProvider>
+    <UsernameSettingPage />
+  </DarkModeProvider>
+);
+
+export default App;

@@ -7,6 +7,7 @@ const DarkModeToggle = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.text}>{isDarkMode ? 'Dark Mode' : 'Light Mode'}</Text>
       <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
     </View>
   );

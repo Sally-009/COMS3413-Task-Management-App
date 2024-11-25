@@ -1,12 +1,14 @@
 import { SafeAreaView, View } from "react-native";
 import React from "react";
 import { styles } from "../../styles";
+import { DarkModeProvider, useDarkMode } from '../../../components/settings-components/dark-mode-context';
 
 // import components
 import TaskDetailItem from "../../../components/tasks-components/task-detail-item";
-import withDarkMode from "../../../components/settings-components/with-dark-mode"; // Import the HOC
 
-function TaskDetailPage({ isDarkMode }) { // Receive isDarkMode as a prop
+
+function TaskDetailPage() { // Receive isDarkMode as a prop
+  const { isDarkMode } = useDarkMode();
   return (
     <SafeAreaView style={[styles.container, isDarkMode && styles.darkContainer]}>
       <View style={[styles.contentContainer, isDarkMode && styles.darkContentContainer]}>
@@ -18,4 +20,10 @@ function TaskDetailPage({ isDarkMode }) { // Receive isDarkMode as a prop
   );
 }
 
-export default withDarkMode(TaskDetailPage);
+const App = () => (
+  <DarkModeProvider>
+    <TaskDetailPage />
+  </DarkModeProvider>
+);
+
+export default App;

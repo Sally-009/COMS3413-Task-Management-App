@@ -5,9 +5,12 @@ import InputFieldSetting from '../../../components/settings-components/input-fie
 import Subtitle from '../../../components/general-use-components/subtitle';
 import withDarkMode from '../../../components/settings-components/with-dark-mode'; // Import the HOC
 import { styles } from '../../styles';
+import { DarkModeProvider, useDarkMode } from '../../../components/settings-components/dark-mode-context';
 
-const EmailSettingPage = ({ isDarkMode }) => { // Receive isDarkMode as a prop
+
+const EmailSettingPage = () => { // Receive isDarkMode as a prop
   const [email, setEmail] = useState('john.doe@example.com');
+  const { isDarkMode } = useDarkMode();
 
   const handleSaveEmail = (newEmail) => {
     setEmail(newEmail);
@@ -28,4 +31,10 @@ const EmailSettingPage = ({ isDarkMode }) => { // Receive isDarkMode as a prop
   );
 };
 
-export default withDarkMode(EmailSettingPage);
+const App = () => (
+  <DarkModeProvider>
+    <EmailSettingPage />
+  </DarkModeProvider>
+);
+
+export default App;

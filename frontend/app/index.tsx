@@ -174,9 +174,8 @@ function TabNavigator() {
 }
 
 function RootLayout() {
-  const { isDarkMode } = useDarkMode();
   return (
-    <NavigationContainer theme={isDarkMode ? DefaultTheme : DarkTheme}>
+    <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
           name="welcome-page"
@@ -203,10 +202,4 @@ function RootLayout() {
   );
 }
 
-export default function App() {
-  return (
-    <DarkModeProvider>
-      <RootLayout />
-    </DarkModeProvider>
-  );
-}
+export default RootLayout;

@@ -5,9 +5,12 @@ import ProfileImage from '../../../components/settings-components/profile-image'
 import ChangeProfileImage from '../../../components/settings-components/change-profile-image';
 import withDarkMode from '../../../components/settings-components/with-dark-mode'; // Import the HOC
 import { styles } from '../../styles'; // Import global styles
+import { DarkModeProvider, useDarkMode } from '../../../components/settings-components/dark-mode-context';
 
-const ProfileImagePage = ({ isDarkMode }) => { // Receive isDarkMode as a prop
+
+const ProfileImagePage = () => { // Receive isDarkMode as a prop
   const [profileImage, setProfileImage] = useState('https://example.com/profile.jpg');
+  const { isDarkMode } = useDarkMode();
 
   const handleImageChange = (newImageUri) => {
     setProfileImage(newImageUri);
@@ -24,4 +27,10 @@ const ProfileImagePage = ({ isDarkMode }) => { // Receive isDarkMode as a prop
   );
 };
 
-export default withDarkMode(ProfileImagePage);
+const App = () => (
+  <DarkModeProvider>
+    <ProfileImagePage />
+  </DarkModeProvider>
+);
+
+export default App;
