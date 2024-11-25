@@ -12,7 +12,8 @@ const TaskItem = ({ taskName, date, categoryColor, taskId }) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate('TaskDetailPage', { taskId }); // Ensure the screen name matches
+    console.log("Navigating to TaskDetailPage... Task ID: ", taskId);
+    navigation.navigate('TaskDetailPage', { taskId });
   };
 
   return (

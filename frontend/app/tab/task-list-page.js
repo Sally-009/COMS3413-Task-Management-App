@@ -39,7 +39,7 @@ export default function TaskListPage() {
       taskName={item.taskName}
       categoryColor="blue"
       date={"NA"}
-      taskID={item._id}
+      taskId={item._id}
     />
   );
 
