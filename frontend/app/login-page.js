@@ -3,6 +3,8 @@ import { SafeAreaView, Image, StyleSheet } from "react-native";
 import SubmitButtonWelcome from "../components/submit-button-welcome";
 import InputFieldWelcome from "../components/input-field-welcome";
 import { LinearGradient } from "expo-linear-gradient";
+import axios from "axios";
+import { Alert } from "react-native";
 
 /*
     Login Page
@@ -14,7 +16,7 @@ export default function WelcomePage({ navigation }) {
   const imagePath = require("../assets/images/logo.jpg");
   const gradientColors = ["#121EB9", "#FFFFFF"];
 
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   // navigate to pages
@@ -28,22 +30,48 @@ export default function WelcomePage({ navigation }) {
     }
   }
 
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/users/login", {
+        username,
+        password,
+      });
+
+      // Successful login
+      console.log("Login successful:", response.data); 
+      navigation.navigate("tab-navigator"); 
+
+    } catch (error) {
+      console.error("Login failed:", error);
+      Alert.alert("Error", "Login failed. Please check your credentials.");
+    }
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <LinearGradient colors={gradientColors} style={styles.container}>
         <Image source={imagePath} style={styles.logo} />
+
         <InputFieldWelcome
           placeholder="Username"
-          keyboardType="email-address"
+          keyboardType="default"
+          value={username} // Add value prop
+          onChangeText={setUsername} // Add onChangeText prop
         />
-        <InputFieldWelcome placeholder="Password" keyboardType="default" />
+        <InputFieldWelcome 
+          placeholder="Password" 
+          keyboardType="default" 
+          secureTextEntry={true} // Add secureTextEntry prop
+          value={password} // Add value prop
+          onChangeText={setPassword} // Add onChangeText prop
+        />
         <SubmitButtonWelcome
           title="Login"
-          onPress={navigateTo("tab-navigator")}
+          onPress={handleLogin} // Call handleLogin on press
         />
         <SubmitButtonWelcome
           title="Go Back"
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.goBack()} 
         />
       </LinearGradient>
     </SafeAreaView>
