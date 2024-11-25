@@ -1,8 +1,9 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from "react-native-vector-icons/MaterialIcons";
+import { DarkModeProvider, useDarkMode } from '../components/settings-components/dark-mode-context'; // Adjust the import path as needed
 
 // Import pages
 import WelcomePage from "./welcome-page";
@@ -14,6 +15,13 @@ import SocialPage from "./tab/social-page";
 import SettingPage from "./tab/setting-page";
 import CreateTaskPage from "./tab/sub-pages/create-task-page";
 import TaskDetailPage from "./tab/sub-pages/task-detail-page";
+import DarkModePage from "./tab/sub-pages/dark-mode-setting"; 
+import UsernameSettingPage from "./tab/sub-pages/username-setting";
+import EmailSettingPage from "./tab/sub-pages/email-setting";
+import PasswordSettingPage from "./tab/sub-pages/password-setting";  
+import DeleteAccountPage from "./tab/sub-pages/delete-account-setting";
+import NotificationSettingPage from "./tab/sub-pages/notification-setting";
+import ProfileImagePage from "./tab/sub-pages/profile-image-setting"; // Ensure this is imported
 
 // Create navigation stack
 const Stack = createNativeStackNavigator();
@@ -55,6 +63,53 @@ function HomeStackNavigator() {
         name="TaskDetailPage"
         component={TaskDetailPage}
         options={{ title: "Task Details" }}
+      />
+    </TaskStack.Navigator>
+  );
+}
+
+function SettingStackNavigator() {
+  return (
+    <TaskStack.Navigator>
+      <TaskStack.Screen
+        name="SettingPage"
+        component={SettingPage}
+        options={{ title: "Home", headerShown: false }}
+      />
+      <TaskStack.Screen
+        name="UsernameSettingPage"
+        component={UsernameSettingPage}
+        options={{ title: "Username" }}
+      />
+      <TaskStack.Screen
+        name="PasswordSettingPage"
+        component={PasswordSettingPage}
+        options={{ title: "Change Password" }}
+      />
+      <TaskStack.Screen
+        name="ProfileImagePage"
+        component={ProfileImagePage}
+        options={{ title: "Profile Image" }}
+      />
+      <TaskStack.Screen
+        name="EmailSettingPage"
+        component={EmailSettingPage}
+        options={{ title: "Email" }}
+      />
+      <TaskStack.Screen
+        name="DeleteAccountPage"
+        component={DeleteAccountPage}
+        options={{ title: "Delete Account" }}
+      />
+      <TaskStack.Screen
+        name="NotificationSettingPage"
+        component={NotificationSettingPage}
+        options={{ title: "Notifications" }}
+      />
+      <TaskStack.Screen
+        name="DarkModePage"
+        component={DarkModePage}
+        options={{ title: "Dark Mode" }}
       />
     </TaskStack.Navigator>
   );
@@ -107,7 +162,7 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Setting"
-        component={SettingPage}
+        component={SettingStackNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Icon name="settings" color={color} size={size} />
@@ -118,7 +173,7 @@ function TabNavigator() {
   );
 }
 
-export default function RootLayout() {
+function RootLayout() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -146,3 +201,5 @@ export default function RootLayout() {
     </NavigationContainer>
   );
 }
+
+export default RootLayout;

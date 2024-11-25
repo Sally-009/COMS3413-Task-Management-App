@@ -1,15 +1,18 @@
 import { SafeAreaView, View, Text } from "react-native";
 import React, {useState, useEffect} from "react";
+import { SafeAreaView, View } from "react-native";
+import React from "react";
 import { styles } from "../../styles";
-import { useRoute } from '@react-navigation/native';
+import { DarkModeProvider, useDarkMode } from '../../../components/settings-components/dark-mode-context';
 
 // import components
-import TaskDetailItem from "../../../components/task-detail-item";
+import TaskDetailItem from "../../../components/tasks-components/task-detail-item";
 import fetchTasks from "../../services/task-service";
 
-export default function TaskDetailPage() {
+function TaskDetailPage() {
   const route = useRoute();
   const { taskId } = route.params;
+  const isDarkMode = useDarkMode();
 
   const [task, setTask] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -65,7 +68,7 @@ export default function TaskDetailPage() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, isDarkMode && styles.darkContainer]}>
       <View style={styles.contentContainer}>
         <Text>{message}</Text>
         <Text>Task ID: {task._id}</Text>
@@ -77,3 +80,11 @@ export default function TaskDetailPage() {
     </SafeAreaView>
   );
 }
+
+const App = () => (
+  <DarkModeProvider>
+    <TaskDetailPage />
+  </DarkModeProvider>
+);
+
+export default App;

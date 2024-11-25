@@ -5,7 +5,7 @@ const friendDetailItem = ({ username }) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../assets/images/favicon.png')}
+        source={require('../../assets/images/favicon.png')}
         style={styles.profileImage}
       />
       <Text style={styles.username}>{username}</Text>

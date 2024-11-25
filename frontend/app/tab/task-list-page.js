@@ -3,18 +3,20 @@ import { SafeAreaView, FlatList, Text, View, StyleSheet } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "../styles";
+import Subtitle from "../../components/general-use-components/subtitle";
+import TaskItem from "../../components/tasks-components/task-item";
+import FabCreateTask from "../../components/general-use-components/fab-create-task";
+import { DarkModeProvider, useDarkMode } from '../../components/settings-components/dark-mode-context';
 
 // import components
-import Subtitle from "../../components/subtitle";
-import TaskItem from "../../components/task-item";
-import FabCreateTask from "../../components/fab-create-task";
 import fetchTasks from "../services/task-service";
 
-export default function TaskListPage() {
+function TaskListPage() {
   // States
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("Loading tasks...");
+  const [isDarkMode] = useDarkMode();
 
   const getTasks = async () => {
     try {
@@ -61,3 +63,11 @@ export default function TaskListPage() {
     </SafeAreaView>
   );
 }
+
+const App = () => (
+  <DarkModeProvider>
+    <TaskListPage />
+  </DarkModeProvider>
+);
+
+export default App;

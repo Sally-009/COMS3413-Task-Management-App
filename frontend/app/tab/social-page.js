@@ -1,16 +1,16 @@
 import { SafeAreaView, View, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from '../styles';
+import Subtitle from '../../components/general-use-components/subtitle';
+import InputFieldSocial from '../../components/social-components/input-field-social';
+import AddFriendButton from '../../components/social-components/add-friend-button';
+import FriendDetailItem from '../../components/social-components/friend-detail-item';
+import EditFriendsButton from '../../components/social-components/edit-friends-button';
+import FriendDeleteButton from '../../components/social-components/friend-delete-button';
+import { DarkModeProvider, useDarkMode } from '../../components/settings-components/dark-mode-context';
 
-// Import components
-import Subtitle from '../../components/subtitle';
-import InputFieldSocial from '../../components/input-field-social';
-import AddFriendButton from '../../components/add-friend-button'; 
-import FriendDetailItem from '../../components/friend-detail-item';
-import EditFriendsButton from '../../components/edit-friends-button';
-import FriendDeleteButton from '../../components/friend-delete-button';
-
-export default function SocialPage() {
+function SocialPage() {
+  const { isDarkMode } = useDarkMode();
   const [friends, setFriends] = useState(["Friend 1", "Friend 2"]);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -23,14 +23,10 @@ export default function SocialPage() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, isDarkMode && styles.darkContainer]}>
       <View style={localStyles.socialInputContainer}>
-        <InputFieldSocial 
-          placeholder="Username"
-          keyboardType="default"
-          style={localStyles.inputField}
-        />
-        <AddFriendButton style={localStyles.addButton}/>
+        <InputFieldSocial placeholder="Username" keyboardType="default" style={localStyles.inputField} />
+        <AddFriendButton style={localStyles.addButton} />
       </View>
       <View style={localStyles.editButtonContainer}>
         <EditFriendsButton onPress={toggleEditMode} />
@@ -55,6 +51,8 @@ const FriendList = ({ friends, deleteFriend, isEditing }) => {
     </>
   );
 }
+
+
 
 export const localStyles = StyleSheet.create({
   socialInputContainer: {
@@ -89,3 +87,11 @@ export const localStyles = StyleSheet.create({
     paddingRight: 40, // Adjust this value to move the button further from the right side
   },
 });
+
+const App = () => (
+  <DarkModeProvider>
+    <SocialPage />
+  </DarkModeProvider>
+);
+
+export default App;

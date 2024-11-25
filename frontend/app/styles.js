@@ -11,4 +11,12 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  darkCenter: {
+    backgroundColor: '#333333',
+  },
+  darkContainer: {
+    backgroundColor: '#000000',
+    flex: 1,
+    padding: 20,
+  },
 });
