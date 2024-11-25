@@ -23,7 +23,7 @@ const TaskStack = createNativeStackNavigator();
 // Task stack to include TaskList, CreateTaskPage, and TaskDetailPage
 function TaskStackNavigator() {
   return (
-    <TaskStack.Navigator>
+    <TaskStack.Navigator initialRouteName="TaskListPage">
       <TaskStack.Screen
         name="TaskListPage"
         component={TaskListPage}

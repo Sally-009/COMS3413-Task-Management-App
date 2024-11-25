@@ -6,24 +6,6 @@ import { useNavigation } from '@react-navigation/native';
  * TaskItem Component
  * This component renders a row with a checkbox, text, and a category indicator.
  * It is used in the task list screen for displaying task details.
- * 
- * Usage example:
- * 
- * <TaskItem
- * isCompleted={false} // Task completion status
- * taskName={"Task 1"} // Task name
- * date={"10/2/2024"} // Task date
- * categoryColor={"lightblue"} // Task category color
- * onCheckBoxChange={handleCheckBoxChange} // Handler for checkbox change
- * />
- * 
- * @param {Object} props - Component props
- * @param {boolean} props.isCompleted - Task completion status
- * @param {string} props.taskName - Task name
- * @param {string} props.date - Task date
- * @param {string} props.categoryColor - Task category color
- * @param {function} props.onCheckBoxChange - Handler for checkbox change
- * @returns {JSX.Element} TaskItem component
  */
 
 const TaskItem = ({ taskName, date, categoryColor, taskId }) => {
