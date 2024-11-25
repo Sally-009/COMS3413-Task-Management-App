@@ -33,11 +33,7 @@ export default function RegisterPage({ navigation }) {
 
       // Handle successful registration (e.g., display success message, navigate)
       console.log("Registration successful:", response.data);
-      Alert.alert("Success", "Registration successful!", [
-        { text: "OK",
-          onPress: () => navigation.navigate('tab-navigator', { screen: 'Home' })
-          },
-      ]);
+      navigation.navigate("tab-navigator"); 
 
     } catch (error) {
       console.error("Registration failed:", error);
