@@ -13,7 +13,7 @@ import TaskListPage from "./tab/task-list-page";
 import SocialPage from "./tab/social-page";
 import SettingPage from "./tab/setting-page";
 import CreateTaskPage from "./tab/sub-pages/create-task-page";
-import TaskDetailPage from "./tab/sub-pages/task-detail-page"; // Import TaskDetailPage
+import TaskDetailPage from "./tab/sub-pages/task-detail-page";
 
 // Create navigation stack
 const Stack = createNativeStackNavigator();
@@ -23,7 +23,7 @@ const TaskStack = createNativeStackNavigator();
 // Task stack to include TaskList, CreateTaskPage, and TaskDetailPage
 function TaskStackNavigator() {
   return (
-    <TaskStack.Navigator>
+    <TaskStack.Navigator initialRouteName="TaskListPage">
       <TaskStack.Screen
         name="TaskListPage"
         component={TaskListPage}

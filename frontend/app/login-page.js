@@ -5,6 +5,7 @@ import InputFieldWelcome from "../components/input-field-welcome";
 import { LinearGradient } from "expo-linear-gradient";
 import axios from "axios";
 import { Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /*
     Login Page
@@ -39,6 +40,11 @@ export default function WelcomePage({ navigation }) {
 
       // Successful login
       console.log("Login successful:", response.data); 
+
+      // Save token to local storage
+      await AsyncStorage.setItem("token", response.data.token);
+
+      console.log("Token:", response.data.token);
       navigation.navigate("tab-navigator"); 
 
     } catch (error) {
