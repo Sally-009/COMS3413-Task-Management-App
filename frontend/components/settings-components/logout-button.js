@@ -1,5 +1,6 @@
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 /**
  * LogoutButton component
@@ -11,8 +12,22 @@ import React from "react";
  */
 
 const LogoutButton = () => {
+
+  // Use Navigation
+  const navigation = useNavigation();
+
+  // logout functionality
+  const logout = () => {
+    // Remove token
+    localStorage.removeItem("token");
+    // Navigate to top page
+    navigation.navigate("welcome-page");
+
+    console.log("Logout Successful");
+  };
+
   return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity style={styles.button} onPress={() => logout()}>
       <Text style={styles.buttonText}>Logout</Text>
     </TouchableOpacity>
   );

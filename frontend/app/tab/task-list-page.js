@@ -1,24 +1,64 @@
-import { SafeAreaView, View, Text } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { SafeAreaView, FlatList, Text, View, StyleSheet } from "react-native";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "../styles";
 import Subtitle from "../../components/general-use-components/subtitle";
 import TaskItem from "../../components/tasks-components/task-item";
 import FabCreateTask from "../../components/general-use-components/fab-create-task";
 import { DarkModeProvider, useDarkMode } from '../../components/settings-components/dark-mode-context';
 
+// import components
+import fetchTasks from "../services/task-service";
+
 function TaskListPage() {
-  const { isDarkMode } = useDarkMode();
+  // States
+  const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState("Loading tasks...");
+  const [isDarkMode] = useDarkMode();
+
+  const getTasks = async () => {
+    try {
+      const taskData = await fetchTasks(); // Use the fetchTasks function here
+      setTasks(taskData); // Set the tasks state
+      setMessage(""); // Clear the loading message
+    } catch (error) {
+      setMessage("Error fetching tasks");
+    } finally {
+      setLoading(false); // Set loading state to false
+    }
+  };
+
+  // Fetch tasks on component mount
+  useEffect(() => {
+    getTasks(); // Call the function
+  }, []);
+
+  // Render task
+  const renderTask = ({ item }) => (
+    <TaskItem
+      taskName={item.taskName}
+      categoryColor="blue"
+      date={"NA"}
+      taskId={item._id}
+    />
+  );
+
   return (
-    <SafeAreaView style={[styles.container, isDarkMode && styles.darkContainer]}>
-      <Subtitle title="No Date" />
-      <TaskItem taskName="Task 1" categoryColor="lightblue" taskId="1" />
-      <TaskItem taskName="Task 2" categoryColor="orange" taskId="2" />
-      <Subtitle title="Today" />
-      <TaskItem taskName="Task 3" date="November 12" categoryColor="lightblue" taskId="3" />
-      <TaskItem taskName="Task 4" date="November 12" categoryColor="orange" taskId="4" />
-      <Subtitle title="Others" />
-      <TaskItem taskName="Task 5" date="November 13" categoryColor="lightcoral" taskId="5" />
-      <TaskItem taskName="Task 6" date="November 13" categoryColor="orange" taskId="6" />
+    <SafeAreaView style={styles.container}>
+      {loading ? (
+        <Text style={styles.loadingText}>{message}</Text>
+      ) : (
+        <View>
+          <Subtitle title="Tasks" />
+          <FlatList
+            data={tasks}
+            keyExtractor={(item) => item._id.toString()}
+            renderItem={renderTask}
+          />
+        </View>
+      )}
       <FabCreateTask />
     </SafeAreaView>
   );
