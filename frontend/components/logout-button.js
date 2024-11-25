@@ -1,6 +1,7 @@
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /**
  * LogoutButton component
@@ -19,7 +20,7 @@ const LogoutButton = () => {
   // logout functionality
   const logout = () => {
     // Remove token
-    localStorage.removeItem("token");
+    AsyncStorage.removeItem("token");
     // Navigate to top page
     navigation.navigate("welcome-page");
 
