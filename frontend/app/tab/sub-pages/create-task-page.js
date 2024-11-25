@@ -9,7 +9,7 @@ import InputFieldTask from "../../../components/input-field-task";
 import ToggleItem from "../../../components/toggle-item";
 import MainButton from "../../../components/main-button";
 
-export default function TaskDetailPage() {
+export default function CreateTaskPage() {
     return (
       <SafeAreaView style={styles.container}>
         <InputFieldTask iconName="edit" placeholder="Task Name" />
