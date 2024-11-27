@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#333333',
   },
   darkContainer: {
-    backgroundColor: '#000000',
+    backgroundColor: '#333333',
     flex: 1,
     padding: 20,
   },

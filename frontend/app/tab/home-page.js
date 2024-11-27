@@ -1,5 +1,7 @@
 import React from "react";
 import { SafeAreaView, View } from "react-native";
+import { useEffect } from "react";
+
 import Subtitle from "../../components/general-use-components/subtitle";
 import TaskItem from "../../components/tasks-components/task-item";
 import { styles } from "../styles";
@@ -17,6 +19,9 @@ import { DarkModeProvider, useDarkMode } from '../../components/settings-compone
 
 function HomePage() {
   const { isDarkMode } = useDarkMode();
+  useEffect(() => {
+    console.log("Dark mode is now:", isDarkMode);
+  }, [isDarkMode]);
   return (
     <View style={[styles.container, isDarkMode && styles.darkContainer]}>
       <Subtitle title="Your Tasks" />

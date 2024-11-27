@@ -1,9 +1,9 @@
 import React from 'react';
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { DarkModeProvider, useDarkMode } from '../components/settings-components/dark-mode-context'; // Adjust the import path as needed
+import { DarkModeProvider } from '../components/settings-components/dark-mode-context'; // Adjust the import path as needed
 
 // Import pages
 import WelcomePage from "./welcome-page";
@@ -175,30 +175,32 @@ function TabNavigator() {
 
 function RootLayout() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="welcome-page"
-          component={WelcomePage}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="login-page"
-          component={LoginPage}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="register-page"
-          component={RegisterPage}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="tab-navigator"
-          component={TabNavigator}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <DarkModeProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="welcome-page"
+            component={WelcomePage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="login-page"
+            component={LoginPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="register-page"
+            component={RegisterPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="tab-navigator"
+            component={TabNavigator}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </DarkModeProvider>
   );
 }
 

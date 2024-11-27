@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { useDarkMode } from '../../components/settings-components/dark-mode-context';
 
 /**
  * TaskItem Component
@@ -10,6 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const TaskItem = ({ taskName, date, categoryColor, taskId }) => {
   const navigation = useNavigation();
+  const { isDarkMode } = useDarkMode();
 
   const handlePress = () => {
     console.log("Navigating to TaskDetailPage... Task ID: ", taskId);
@@ -17,11 +19,11 @@ const TaskItem = ({ taskName, date, categoryColor, taskId }) => {
   };
 
   return (
-    <TouchableOpacity onPress={handlePress} style={styles.container}>
+    <TouchableOpacity onPress={handlePress} style={[styles.container, isDarkMode && styles.darkContainer]}>
       <View style={[styles.categoryIndicator, { backgroundColor: categoryColor }]} />
       <View style={styles.textContainer}>
-        <Text style={styles.taskName}>{taskName}</Text>
-        {date && <Text style={styles.date}>{date}</Text>}
+        <Text style={[styles.taskName, isDarkMode && styles.darkText]}>{taskName}</Text>
+        {date && <Text style={[styles.date, isDarkMode && styles.darkText]}>{date}</Text>}
       </View>
     </TouchableOpacity>
   );
@@ -42,6 +44,9 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 2,
   },
+  darkContainer: {
+    backgroundColor: "#666666", // Light gray background for dark mode
+  },
   categoryIndicator: {
     width: 10,
     height: 10,
@@ -53,11 +58,14 @@ const styles = StyleSheet.create({
   },
   taskName: {
     fontSize: 16,
-    fontWeight: "bold",
+    color: "black", // Default text color
   },
   date: {
     fontSize: 14,
-    color: "#888",
+    color: "gray", // Default date color
+  },
+  darkText: {
+    color: "#FFFFFF", // White text for dark mode
   },
 });
 

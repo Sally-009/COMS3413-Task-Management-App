@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 import { DarkModeProvider, useDarkMode } from '../../../components/settings-components/dark-mode-context';
 import DarkModeToggle from '../../../components/settings-components/dark-mode-toggle';
 

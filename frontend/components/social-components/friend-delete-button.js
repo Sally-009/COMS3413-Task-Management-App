@@ -11,7 +11,7 @@ const FriendDeleteButton = ({ onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     paddingRight: 30,
     borderRadius: 5,
     alignItems: 'center',
