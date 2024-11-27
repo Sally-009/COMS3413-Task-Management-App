@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, FlatList, Text, View, StyleSheet } from "react-native";
-import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "../styles";
 import Subtitle from "../../components/general-use-components/subtitle";
 import TaskItem from "../../components/tasks-components/task-item";

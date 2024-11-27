@@ -1,7 +1,5 @@
 import { SafeAreaView, View, Text } from "react-native";
 import React, {useState, useEffect} from "react";
-import { SafeAreaView, View } from "react-native";
-import React from "react";
 import { styles } from "../../styles";
 import { DarkModeProvider, useDarkMode } from '../../../components/settings-components/dark-mode-context';
 
